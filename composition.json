@@ -1,0 +1,25 @@
+{
+  "composition": {
+    "methane": 96.13920,
+    "ethane": 2.00090,
+    "propane": 0.42310,
+    "isoButane": 0.06530,
+    "n-Butane": 0.07120,
+    "isoPentane": 0.01920,
+    "n-Pentane": 0.01420,
+    "n-Hexane": 0.01940,
+    "n-Heptane": 0.00000,
+    "n-Octane": 0.00000,
+    "n-Nonane": 0.00000,
+    "n-Decane": 0.00000,
+    "hydrogen": 0.00000,
+    "oxygen": 0.00000,
+    "nitrogen": 0.52220,
+    "helium": 0.00000,
+    "argon": 0.00000,
+    "water": 0.00000,
+    "hydrogenSulfide": 0.00000,
+    "carbonMonoxide": 0.00000,
+    "carbonDioxide": 0.72540
+  }
+}

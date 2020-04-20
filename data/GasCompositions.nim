@@ -332,47 +332,6 @@ proc calcGasBlend(comp: Composition): GasBlend =
     ratioSpecificHeats
     )
 
-
-
-
-var
-  testComp : Composition = [
-    96.13920,
-    2.00090,
-    0.42310,
-    0.06530,
-    0.07120,
-    0.01920,
-    0.01420,
-    0.01940,
-    0.00000,
-    0.00000,
-    0.00000,
-    0.00000,
-
-    0.00000,
-    0.00000,
-    0.52220,
-    0.00000,
-    0.00000,
-
-    0.00000,
-    0.00000,
-    0.00000,
-    0.72540
-  ]
-
-var
-  test: GasBlend = calcGasBlend(testComp)
-  props: GasBlendComponentProps = test.Props.GasBlendComponentProps
-
-for name, i in gasIndex.fieldPairs:
-  echo name, " => ", props[i].CalculatedProperties.RatioOfSpecificHeat
-
-for name, i in test.fieldPairs:
-  if name != "Props":
-    echo name, " => ", i
-
 #[
     CriticalPressurePercentage    : Percentage
     CriticalTemperaturePercentage : Percentage
