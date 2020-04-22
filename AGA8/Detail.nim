@@ -53,11 +53,11 @@ proc xTermsDetail(comp : Composition) =
     if gasA == 0:
       continue
 
-    for j, gasB in comp.pairs:
-      if gasB == 0:
+    for j in i..CompCount:
+      if comp[j] == 0:
         continue
 
-      xij = 2 * gasA * gasB
+      xij = 2 * gasA * comp[j]
       K3 += xij * Kij5[i][j]
       U += xij * Uij5[i][j]
       G += xij * Gij5[i][j]
@@ -118,17 +118,17 @@ proc Alpha0Detail(temp : Temperature, density : Density, comp : Composition) : A
     th0, n0 : float
   
   if density > epsilon:
-    LogD = log10(density)
+    LogD = ln(density)
   else:
-    LogD = log10(epsilon)
+    LogD = ln(epsilon)
   
-  LogT = log10(temp)
+  LogT = ln(temp)
 
   for i, gasPercentage in comp.pairs:
     if gasPercentage == 0:
       continue
 
-    LogxD = LogD + log10(gasPercentage)
+    LogxD = LogD + ln(gasPercentage)
     
     for j in 4..7:
       th0 = th0i[i][j]
@@ -144,12 +144,12 @@ proc Alpha0Detail(temp : Temperature, density : Density, comp : Composition) : A
       hcn = (ep + em) / 2
 
       if j == 4 or j == 6:
-        LogHyp = log10(abs(hsn))
+        LogHyp = ln(abs(hsn))
         SumHyp0 += n0 * LogHyp
         SumHyp1 += n0 * (LogHyp - th0T * hcn / hsn)
         SumHyp2 += n0 * pow(th0T / hsn, 2)
       else:
-        LogHyp = log10(abs(hcn))
+        LogHyp = ln(abs(hcn))
         SumHyp0 += - n0 * LogHyp
         SumHyp1 += - n0 * (LogHyp - th0T * hsn / hcn)
         SumHyp2 += n0 * pow(th0T / hcn, 2)
@@ -187,7 +187,7 @@ proc AlphaRDetail(itau : int, idel : int, temp : Temperature, density : Density)
 
   if abs(temp - TempOld) > 0.0000001:
     for n in 1..TermCount:
-      Tun[n] = pow(temp, un[n])
+      Tun[n] = pow(temp, -un[n])
   TempOld = temp
 
   # ? Precalculations of common powers and exponents of density
@@ -220,7 +220,7 @@ proc AlphaRDetail(itau : int, idel : int, temp : Temperature, density : Density)
       ckd = kFloat * kFloat * Dknn[kn[n]]
       CoefD1[n] = bkd
       CoefD2[n] = bkd * (bkd - 1) - ckd
-      CoefD3[n] = (bkd - 2) * CoefD2[n] + ckd * (float(1 - kn[n]) - 2 * bkd)
+      CoefD3[n] = (bkd - 2) * CoefD2[n] + ckd * (1 - kFloat - 2 * bkd)
   
   for n in 1..TermCount:
     # ? Density derivatives
@@ -302,8 +302,8 @@ proc DensityDetail*(temp : Temperature, pressure : Pressure, comp : Composition,
   else:
     result.Density = abs(density)
   
-  plog = log10(pressure)
-  vlog = -log10(result.Density)
+  plog = ln(pressure)
+  vlog = -ln(result.Density)
 
   for it in 1..20:
     if vlog < -7 or vlog > 100:
@@ -312,7 +312,9 @@ proc DensityDetail*(temp : Temperature, pressure : Pressure, comp : Composition,
       result.Density = pressure / rDetail / temp
       return result
     result.Density = exp(-vlog)
-    pDetail = PressureDetail(temp, density, comp)
+    echo result.Density
+    pDetail = PressureDetail(temp, result.Density, comp)
+    echo result.Density
 
     if dPdDsave < epsilon or pDetail.Pressure < epsilon:
       vlog += 0.1
@@ -321,7 +323,7 @@ proc DensityDetail*(temp : Temperature, pressure : Pressure, comp : Composition,
       # ? log(P) as the known variable and log(v) as the unknown property.
       # ? See AGA 8 publication for further information.
       dpdlv = -result.Density * dPdDsave # ? d(p)/d[log(v)]
-      vdiff = (log10(pDetail.Pressure) - plog) * pDetail.Pressure / dpdlv
+      vdiff = (ln(pDetail.Pressure) - plog) * pDetail.Pressure / dpdlv
       vlog = vlog - vdiff
       if abs(vdiff) < tolr:
         result.Density = exp(-vlog)

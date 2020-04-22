@@ -48,7 +48,7 @@ orificePlateBoreDiameter /= 100
 baseTemp += 273.15 # ? deg c to deg Kelvin
 
 var # ? AGA8
-  baseDensity : DDetail = DensityDetail(baseTemp, basePressure / 1_000, composition, 1e10)
+  baseDensity : DDetail = DensityDetail(baseTemp, basePressure / 1_000, composition)
   baseProps : GasBlendProps = PropertiesDetail(baseTemp, baseDensity.Density, composition)
 
   density : DDetail = DensityDetail(flowTemp, flowPressure / 1_000, composition)

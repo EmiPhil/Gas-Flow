@@ -23,7 +23,7 @@
     "argon": 0.1
   },
   "baseTemp": 126.85,
-  "basePressure": 50000,
+  "basePressure": 50000000,
   "pipeExpansionCoef": 11.16,
   "orificePlateExpansionCoef": 16.65,
   "meterInternalDiameter": 7.80542,
