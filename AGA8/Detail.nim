@@ -49,15 +49,15 @@ proc xTermsDetail(comp : Composition) =
   U = pow(U, 2)
 
   # ? Binary pair contributions
-  for i, gasA in comp.pairs:
-    if gasA == 0:
+  for i in 1..CompCount - 1:
+    if comp[i] == 0:
       continue
 
-    for j in i..CompCount:
+    for j in i + 1..CompCount:
       if comp[j] == 0:
         continue
 
-      xij = 2 * gasA * comp[j]
+      xij = 2 * comp[i] * comp[j]
       K3 += xij * Kij5[i][j]
       U += xij * Uij5[i][j]
       G += xij * Gij5[i][j]
@@ -129,6 +129,9 @@ proc Alpha0Detail(temp : Temperature, density : Density, comp : Composition) : A
       continue
 
     LogxD = LogD + ln(gasPercentage)
+    SumHyp0 = 0
+    SumHyp1 = 0
+    SumHyp2 = 0
     
     for j in 4..7:
       th0 = th0i[i][j]
@@ -153,6 +156,7 @@ proc Alpha0Detail(temp : Temperature, density : Density, comp : Composition) : A
         SumHyp0 += - n0 * LogHyp
         SumHyp1 += - n0 * (LogHyp - th0T * hsn / hcn)
         SumHyp2 += n0 * pow(th0T / hcn, 2)
+      echo "SumHyp0 ", i, " ", j, " = ", SumHyp0
   
     result[0] += gasPercentage * (LogxD + n0i[i][1] + n0i[i][2] / temp - n0i[i][3] * LogT + SumHyp0)
     result[1] += gasPercentage * (LogxD + n0i[i][1] - n0i[i][3] * (1 + LogT) + SumHyp1)
@@ -265,6 +269,7 @@ proc PressureDetail*(temp: Temperature, density: Density, comp: Composition) : P
   alphaR = AlphaRDetail(0, 2, temp, density)
 
   result.Compressibility = 1 + alphaR.Density.PartialA / rDetail / temp
+
   result.Pressure = density * rDetail * temp * result.Compressibility
 
   # ? d(P) / d(D) for use in density iteration
@@ -312,9 +317,7 @@ proc DensityDetail*(temp : Temperature, pressure : Pressure, comp : Composition,
       result.Density = pressure / rDetail / temp
       return result
     result.Density = exp(-vlog)
-    echo result.Density
     pDetail = PressureDetail(temp, result.Density, comp)
-    echo result.Density
 
     if dPdDsave < epsilon or pDetail.Pressure < epsilon:
       vlog += 0.1
@@ -350,6 +353,7 @@ type
     dPdT : float # ? First derivative of pressure with respect to temperature at constant density (kPa/K)
 
   GasBlendProps* = tuple
+    MolarMass : MolarMass
     Pressure : Pressure
     Compressibility : Compressibility
     Derivatives : GasBlendDerivatives
@@ -367,12 +371,10 @@ proc PropertiesDetail*(temp: Temperature, density: Density, comp: Composition) :
   var
     alpha0 : Alpha0
     alphaR : AlphaR
-    molarMass : MolarMass
 
     A, RT: float
   
-  molarMass = MolarMassDetail(comp)
-  echo molarMass
+  result.MolarMass = MolarMassDetail(comp)
   xTermsDetail(comp)
 
   # ? Calculate the ideal gas Helmholtz energy, and its first and second derivatives with respect to temperature.
@@ -414,13 +416,13 @@ proc PropertiesDetail*(temp: Temperature, density: Density, comp: Composition) :
     result.JouleThomsonCoef = 1E+20 # ? =(dB/dT*T-B)/Cp for an ideal gas, but dB/dT is not calculated here
   
   result.SpeedOfSound = 1000 * result.IsobaricHeatCapacity / result.IsochoricHeatCapacity *
-    result.Derivatives.dPdD / molarMass
+    result.Derivatives.dPdD / result.MolarMass
 
   if result.SpeedOfSound < 0:
     result.SpeedOfSound = 0
   
   result.SpeedOfSound = sqrt(result.SpeedOfSound)
-  result.Kappa = result.SpeedOfSound * result.SpeedOfSound * molarMass / (
+  result.Kappa = result.SpeedOfSound * result.SpeedOfSound * result.MolarMass / (
     RT * 1000 * result.Compressibility
   )
 
