@@ -1,0 +1,31 @@
+{
+  "composition": {
+    "methane": 77.296,
+    "nitrogen": 1.059,
+    "ethane": 7.93,
+    "propane": 4.569,
+    "isoButane": 1.406,
+    "n-Butane": 2.102,
+    "isoPentane": 1.097,
+    "n-Pentane": 0.847,
+    "n-Hexane": 0.972,
+    "n-Heptane": 0.959,
+    "n-Octane": 0.00000,
+    "n-Nonane": 0.00000,
+    "n-Decane": 0.00000,
+    "hydrogen": 0.00000,
+    "oxygen": 0.00000,
+    "helium": 0.00000,
+    "argon": 0.00000,
+    "water": 0.00000,
+    "hydrogenSulfide": 0.001,
+    "carbonMonoxide": 0.00000,
+    "carbonDioxide": 1.763
+  },
+  "baseTemp": 15.5556,
+  "basePressure": 101008.19,
+  "pipeExpansionCoef": 11.16,
+  "orificePlateExpansionCoef": 16.65,
+  "meterInternalDiameter": 7.80542,
+  "orificePlateBoreDiameter": 1.5875
+}
