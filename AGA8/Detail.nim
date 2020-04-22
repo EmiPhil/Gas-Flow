@@ -370,6 +370,7 @@ proc PropertiesDetail*(temp: Temperature, density: Density, comp: Composition) :
     A, RT: float
   
   molarMass = MolarMassDetail(comp)
+  echo molarMass
   xTermsDetail(comp)
 
   # ? Calculate the ideal gas Helmholtz energy, and its first and second derivatives with respect to temperature.

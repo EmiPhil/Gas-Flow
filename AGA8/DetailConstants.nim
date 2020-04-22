@@ -3,71 +3,32 @@ import math
 
 # * Molar mass constants
 type
-  # ? Gas composition is used to define the molar mass of each of the possible gasses in the
-  # ? Composition. We could have defined these as constants directly.
-  GasComp = tuple
-    Carbon   : int
-    Hydrogen : int
-    Oxygen   : int
-    Sulfur   : int
-    Nitrogen : int
-    Helium   : int
-    Argon    : int
-    
   MolarMass = float # * g/mol
   MolarMasses = array[1..21, MolarMass]
-  
-  MolecularWeight = float
-  Molecule = tuple
-    MW: MolecularWeight
-
-const
-  carbon   : Molecule = (MW: 12.01100)
-  hydrogen : Molecule = (MW: 1.00794)
-  oxygen   : Molecule = (MW: 15.99940)
-  sulfur   : Molecule = (MW: 32.06600)
-  nitrogen : Molecule = (MW: 14.00674)
-  helium   : Molecule = (MW: 4.00260)
-  argon    : Molecule = (MW: 39.94800)
-
-proc gasCompMM(gasComp : GasComp) : MolarMass =
-  var
-    masses : array[7, MolecularWeight] = [
-      carbon.MW    * float(gasComp.Carbon),
-      hydrogen.MW  * float(gasComp.Hydrogen),
-      oxygen.MW    * float(gasComp.Oxygen),
-      sulfur.MW    * float(gasComp.Sulfur),
-      nitrogen.MW  * float(gasComp.Nitrogen),
-      helium.MW    * float(gasComp.Helium),
-      argon.MW     * float(gasComp.Argon)
-    ]
-  for mass in masses:
-    result = result + mass
 
 const
   molarMasses : MolarMasses = [
-  # ?           C,  H,  O,  S,  N, He, Ar
-    gasCompMM(( 1,  4,  0,  0,  0,  0,  0)), # ? Methane
-    gasCompMM(( 0,  0,  0,  0,  2,  0,  0)), # ? Nitrogen
-    gasCompMM(( 1,  0,  2,  0,  0,  0,  0)), # ? Carbon dioxide
-    gasCompMM(( 2,  6,  0,  0,  0,  0,  0)), # ? Ethane
-    gasCompMM(( 3,  8,  0,  0,  0,  0,  0)), # ? Propane
-    gasCompMM(( 4, 10,  0,  0,  0,  0,  0)), # ? Isobutane
-    gasCompMM(( 4, 10,  0,  0,  0,  0,  0)), # ? n-Butane
-    gasCompMM(( 5, 12,  0,  0,  0,  0,  0)), # ? Isopentane
-    gasCompMM(( 5, 12,  0,  0,  0,  0,  0)), # ? n-Pentane
-    gasCompMM(( 6, 14,  0,  0,  0,  0,  0)), # ? Hexane
-    gasCompMM(( 7, 16,  0,  0,  0,  0,  0)), # ? Heptane
-    gasCompMM(( 8, 18,  0,  0,  0,  0,  0)), # ? Octane
-    gasCompMM(( 9, 20,  0,  0,  0,  0,  0)), # ? Nonane
-    gasCompMM((10, 22,  0,  0,  0,  0,  0)), # ? Decane
-    gasCompMM(( 0,  2,  0,  0,  0,  0,  0)), # ? Hydrogen
-    gasCompMM(( 0,  0,  2,  0,  0,  0,  0)), # ? Oxygen
-    gasCompMM(( 1,  0,  1,  0,  0,  0,  0)), # ? Carbon monoxide
-    gasCompMM(( 0,  2,  1,  0,  0,  0,  0)), # ? Water
-    gasCompMM(( 0,  2,  0,  1,  0,  0,  0)), # ? Hydrogen sulfide
-    gasCompMM(( 0,  0,  0,  0,  0,  1,  0)), # ? Helium
-    gasCompMM(( 0,  0,  0,  0,  0,  0,  1)), # ? Argon
+    16.043,  # ? Methane
+    28.0135, # ? Nitrogen
+    44.01,   # ? Carbon dioxide
+    30.07,   # ? Ethane
+    44.097,  # ? Propane
+    58.123,  # ? Isobutane
+    58.123,  # ? n-Butane
+    72.15,   # ? Isopentane
+    72.15,   # ? n-Pentane
+    86.177,  # ? Hexane
+    100.204, # ? Heptane
+    114.231, # ? Octane
+    128.258, # ? Nonane
+    142.285, # ? Decane
+    2.0159,  # ? Hydrogen
+    31.9988, # ? Oxygen
+    28.01,   # ? Carbon monoxide
+    18.0153, # ? Water
+    34.082,  # ? Hydrogen sulfide
+    4.0026,  # ? Helium
+    39.948,  # ? Argon
   ]
 
 

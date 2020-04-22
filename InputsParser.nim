@@ -42,6 +42,13 @@ proc parseInput*(jsonStr: string): InputData =
   result[0][20] = comp["helium"].getFloat()
   result[0][21] = comp["argon"].getFloat()
 
+  var total : float = 0
+  for i in 1..CompCount:
+    total += result[0][i]
+    result[0][i] /= 100 # * AGA8 expects mol mass to add up to 1
+  if total != 100.0:
+    echo "WARN: Mol masses do not exactly equal 100 (", total, ")."
+
   result[1] = jsonNode["meterInternalDiameter"].getFloat()
   result[2] = jsonNode["orificePlateBoreDiameter"].getFloat()
 

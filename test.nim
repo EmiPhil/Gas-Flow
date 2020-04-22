@@ -1,5 +1,9 @@
 import math
 
-echo -pow(10, 0.5)
+var
+  arr : array[1..5, int]
 
-nim c --run OrificeCalculator.nim --fT=36.4716667 --fP=603415.369 --dP=31344.63292
+arr = [1,2,3,4,5]
+
+for i in 1..5:
+  echo arr[i]

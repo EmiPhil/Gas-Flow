@@ -2,6 +2,7 @@
   "composition": {
     "methane": 77.296,
     "nitrogen": 1.059,
+    "carbonDioxide": 1.763,
     "ethane": 7.93,
     "propane": 4.569,
     "isoButane": 1.406,
@@ -15,12 +16,11 @@
     "n-Decane": 0.00000,
     "hydrogen": 0.00000,
     "oxygen": 0.00000,
-    "helium": 0.00000,
-    "argon": 0.00000,
+    "carbonMonoxide": 0.00000,
     "water": 0.00000,
     "hydrogenSulfide": 0.001,
-    "carbonMonoxide": 0.00000,
-    "carbonDioxide": 1.763
+    "helium": 0.00000,
+    "argon": 0.00000
   },
   "baseTemp": 15.5556,
   "basePressure": 101008.19,
