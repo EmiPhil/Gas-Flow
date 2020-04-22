@@ -8,6 +8,25 @@ var
   K3 : float
   xFields : array[1..CompCount, float]
 
+type unit = string
+
+const
+ Temperature_Unit* : unit = "K"
+ Pressure_Unit* : unit = "kPa"
+ MolarMass_Unit* : unit = "g/mol"
+ Density_Unit* : unit = "mol/l"
+ dPdD_Unit* : unit = "kPa/(mol/l)"
+ d2PdD2_Unit* : unit = "kPa/(mol/l)^2"
+ dPdT_Unit* : unit = "kPa/K"
+ InternalEnergy_Unit* : unit = "J/mol"
+ Enthalpy_Unit* : unit = "J/mol"
+ Entropy_Unit* : unit = "J/mol-K"
+ IsochoricHeatCapacity_Unit* : unit = "J/mol-K"
+ IsobaricHeatCapacity_Unit* : unit = "J/mol-K"
+ SpeedOfSound_Unit* : unit = "m/s"
+ GibbsEnergy_Unit* : unit = "J/mol"
+ JouleThomsonCoef_Unit* : unit = "K/kPa"
+
 proc xTermsDetail(comp : Composition) =
   var
     G, Q, Q2, F, U, xij, xi2 : float
@@ -156,7 +175,6 @@ proc Alpha0Detail(temp : Temperature, density : Density, comp : Composition) : A
         SumHyp0 += - n0 * LogHyp
         SumHyp1 += - n0 * (LogHyp - th0T * hsn / hcn)
         SumHyp2 += n0 * pow(th0T / hcn, 2)
-      echo "SumHyp0 ", i, " ", j, " = ", SumHyp0
   
     result[0] += gasPercentage * (LogxD + n0i[i][1] + n0i[i][2] / temp - n0i[i][3] * LogT + SumHyp0)
     result[1] += gasPercentage * (LogxD + n0i[i][1] - n0i[i][3] * (1 + LogT) + SumHyp1)

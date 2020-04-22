@@ -34,9 +34,9 @@ const
   PressureUnit* : unit = "Pa"
   OrificeDifferentialPressureUnit* = PressureUnit
   
-  FluidDensityUnit* : unit = "kg/s"
-  MassFlowUnit* = FluidDensityUnit
-
+  FluidDensityUnit* : unit = "kg/m^3"
+  
+  MassFlowUnit* = "kg/s"
   VolumeFlowUnit* : unit = "m^3/s"
 
   AlphaUnit* : unit = "m/m-K"
@@ -53,7 +53,7 @@ const
 
 proc thermalExpansion*(
   alpha : Alpha,
-  orificeDiameter : Diameter, 
+  diameter : Diameter, 
   referenceTemp : Temperature,
   flowTemp : Temperature
 ) : Diameter =
@@ -61,7 +61,7 @@ proc thermalExpansion*(
   # * Calculation of Orifice Plate Bore/Meter Tube Diameter from Reference/Measured Diameter
 
   # ? alpha = coefficient of thermal expansion
-  result = orificeDiameter * (1 + alpha * (flowTemp - referenceTemp))
+  result = diameter * (1 + alpha * (flowTemp - referenceTemp))
 
 proc diameterRatio*(orificePlateBoreDiameter : Diameter, meterInternalDiameter : Diameter) : Beta =
   # * AGA 3 procedure 4.3.2.3
@@ -73,7 +73,7 @@ proc velocityFactor*(beta : Beta) : Velocity =
   # * AGA 3 procedure 4.3.2.4
   # * Calculation of Velocity of Approach Factor
   # ? Beta from diameterRatio
-  result = 1 / pow((1 - pow(beta, 4)), 1 / 2)
+  result = 1 / sqrt(1 - pow(beta, 4))
 
 type
   OrificeCoefsOfDischarge* = tuple

@@ -24,8 +24,8 @@
   },
   "baseTemp": 15.5556,
   "basePressure": 101008.19,
-  "pipeExpansionCoef": 11.16,
-  "orificePlateExpansionCoef": 16.65,
-  "meterInternalDiameter": 7.80542,
-  "orificePlateBoreDiameter": 1.5875
+  "pipeExpansionCoef": 6.2,
+  "orificePlateExpansionCoef": 9.25,
+  "meterInternalDiameter": 78.0542,
+  "orificePlateBoreDiameter": 15.875
 }

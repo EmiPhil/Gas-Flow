@@ -3,7 +3,7 @@ import math
 
 # * Molar mass constants
 type
-  MolarMass = float # * g/mol
+  MolarMass* = float # * g/mol
   MolarMasses = array[1..21, MolarMass]
 
 const

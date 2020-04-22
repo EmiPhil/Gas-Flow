@@ -1,4 +1,5 @@
 import parseopt
+import math
 import strutils
 
 import "AGA8/Detail.nim"
@@ -43,14 +44,16 @@ var
     basePressure
   ) = parseInput(readFile(inputJson))
 
-meterInternalDiameter /= 100 # ? cm to m
-orificePlateBoreDiameter /= 100
+meterInternalDiameter /= 1000 # ? mm to m
+orificePlateBoreDiameter /= 1000
+alphaPipe *= pow(10, -2.5)
+alphaOrifice *= pow(10, -2.5)
 baseTemp += 273.15 # ? deg c to deg Kelvin
 
 var # ? AGA8
-  baseDensity : DDetail = DensityDetail(baseTemp, basePressure / 1_000, composition, 1e10)
-  baseProps : GasBlendProps = PropertiesDetail(baseTemp, baseDensity.Density, composition)
-#[
+  baseDensity : DDetail = DensityDetail(baseTemp, basePressure / 1_000, composition)
+  baseProperties : GasBlendProps = PropertiesDetail(baseTemp, baseDensity.Density, composition)
+
   density : DDetail = DensityDetail(flowTemp, flowPressure / 1_000, composition)
   properties: GasBlendProps = PropertiesDetail(flowTemp, density.Density, composition)
 
@@ -63,7 +66,16 @@ var # ? AGA3
 
   dischargeCoefs : OrificeCoefsOfDischarge = dischargeConstants(meterDiameter, beta)
 
-var Kappa : float
+proc molLToKgm3 (molarMass : MolarMass, density : Density) : Density =
+  # ? molarMass is in g/mol
+  # ? density is in mol/l
+  result = density * 1_000 * molarMass
+  echo density, " -> ", result
+
+var
+  Kappa : float
+  SiBaseDensity : Density = molLToKgm3(baseProperties.MolarMass, baseDensity.Density)
+  SiDensity : Density = molLToKgm3(properties.MolarMass, density.Density)
 
 if properties.Kappa > 0:
   Kappa = properties.Kappa
@@ -89,7 +101,7 @@ var
     differentialPressure,
     velocityFactor,
     0.010268,
-    density.Density,
+    SiDensity,
     expansionFactor
   )
   dischargeCoefficient : DischargeCoef = dischargeCoefficient(dischargeCoefs, iterationFlowFactor)
@@ -100,7 +112,7 @@ var flows : Flows = (
     orificeDiameter,
     differentialPressure,
     velocityFactor,
-    density.Density,
+    SiDensity,
     expansionFactor
   ),
   actualFlow(
@@ -108,7 +120,7 @@ var flows : Flows = (
     orificeDiameter,
     differentialPressure,
     velocityFactor,
-    density.Density,
+    SiDensity,
     expansionFactor
   ),
   baseFlow(
@@ -116,20 +128,22 @@ var flows : Flows = (
     orificeDiameter,
     differentialPressure,
     velocityFactor,
-    baseDensity.Density,
-    density.Density,
+    SiBaseDensity,
+    SiDensity,
     expansionFactor
   )
 )
 
-#for name, flow in flows.fieldPairs:
-#  echo name, " -> ", flow, " ", MassFlowUnit
-]#
-echo baseDensity
-echo baseProps
+echo "Mass Flow => ", flows.Mass, " ", MassFlowUnit
+echo "Actual Flow => ", flows.Actual, " ", VolumeFlowUnit
+echo "Base Flow => ", flows.Base, " ", VolumeFlowUnit
 
-#echo density
-#echo properties
+#echo baseDensity
+#echo baseProps
+echo baseDensity
+echo baseProperties
+echo density
+echo properties
 
 #[
 var
