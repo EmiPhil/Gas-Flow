@@ -46,8 +46,8 @@ var
 
 meterInternalDiameter /= 1000 # ? mm to m
 orificePlateBoreDiameter /= 1000
-alphaPipe *= pow(10, -2.5)
-alphaOrifice *= pow(10, -2.5)
+alphaPipe *= pow(10, -6.0)
+alphaOrifice *= pow(10, -6.0)
 baseTemp += 273.15 # ? deg c to deg Kelvin
 
 var # ? AGA8
@@ -69,13 +69,14 @@ var # ? AGA3
 proc molLToKgm3 (molarMass : MolarMass, density : Density) : Density =
   # ? molarMass is in g/mol
   # ? density is in mol/l
-  result = density * 1_000 * molarMass
-  echo density, " -> ", result
+  result = density * molarMass
+  #echo density, " -> ", result
 
 var
   Kappa : float
   SiBaseDensity : Density = molLToKgm3(baseProperties.MolarMass, baseDensity.Density)
   SiDensity : Density = molLToKgm3(properties.MolarMass, density.Density)
+  SpecificGravity : float = SiBaseDensity / 1.225
 
 if properties.Kappa > 0:
   Kappa = properties.Kappa
@@ -139,12 +140,11 @@ echo "Actual Flow => ", flows.Actual, " ", VolumeFlowUnit
 echo "Base Flow => ", flows.Base, " ", VolumeFlowUnit
 
 #echo baseDensity
-#echo baseProps
-echo baseDensity
-echo baseProperties
-echo density
-echo properties
-
+#echo baseProperties
+#echo density
+#echo properties
+echo SiBaseDensity
+echo SpecificGravity
 #[
 var
   test: GasBlend = calcGasBlend(composition)

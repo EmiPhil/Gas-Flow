@@ -22,16 +22,16 @@ dP = 31344.63292  # orifice differential pressure
 d_orifice = 15.875 / 1000  # measured/reference orifice diameter
 D_pipe = 78.0542 / 1000  # measured/reference meter pipe internal diameter
 # inputs (optional, set to default values)
-alpha_pipe = 6.2 * 10 ** (-2.45)  # thermal expansion coefficient of pipe
-alpha_orifice = 9.25 * 10 ** (-2.45)  # thermal expansion coeffecient of orifice
+alpha_pipe = 6.2 * 10 ** (-6)  # thermal expansion coefficient of pipe
+alpha_orifice = 9.25 * 10 ** (-6)  # thermal expansion coeffecient of orifice
 downstream_tap = False  # tap location (True = downstream, False = upstream)
 T_r = aga3.T_r
 k = 1.218912412567567
 mu = aga3.viscosity()
 # fluid density at base and flowing
 # NOTE: fluid density should be calculated using AGA8, to be implemented in the future
-rho_f = 5527.289729764234
-rho_b = 976.6594912038167
+rho_f = 5.527289729764234
+rho_b = 0.9766594912038167
 
 # a. At T_f, calculate terms that depend only upon orifice geometry, d, D, beta, E_v, orifice discharge constants
 d = aga3.thermal_expansion(alpha_orifice, d_orifice, T_r, T_f)
