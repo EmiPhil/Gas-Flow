@@ -1,137 +1,118 @@
-import parseopt
 import math
-import strutils
 
 import "AGA8/Detail.nim"
 import "AGA3/AGA3.nim"
 
-include "InputsParser.nim"
+import "Inputs.nim"
 
-var p = initOptParser()
-
-var
-  inputJson : string = ""
-  flowTemp : Temperature # deg C
-  flowPressure : Pressure # Pa
-  differentialPressure : Pressure # Pa
-
-while true:
-  p.next()
-  case p.kind
-  of cmdEnd: break
-  of cmdShortOption, cmdLongOption:
-    case p.key
-    of "i", "input": inputJson = p.val
-    of "fT", "flowTemp", "flowTemperature": flowTemp = parseFloat(p.val)
-    of "fP", "flowPressure": flowPressure = parseFloat(p.val)
-    of "dP", "differentialPressure": differentialPressure = parseFloat(p.val)
-  of cmdArgument:
-    inputJson = p.key
-
-if inputJson == "":
-  inputJson = "input.json"
-
-flowTemp += 273.15 # ? deg c to deg Kelvin
-
-var
-  (
-    composition,
-    meterInternalDiameter,
-    orificePlateBoreDiameter,
-    alphaPipe,
-    alphaOrifice,
-    baseTemp,
-    basePressure
-  ) = parseInput(readFile(inputJson))
-
-meterInternalDiameter /= 1000 # ? mm to m
-orificePlateBoreDiameter /= 1000
-alphaPipe *= pow(10, -6.0)
-alphaOrifice *= pow(10, -6.0)
-baseTemp += 273.15 # ? deg c to deg Kelvin
-
-var # ? AGA8
-  baseDensity : DDetail = DensityDetail(baseTemp, basePressure / 1_000, composition)
-  baseProperties : GasBlendProps = PropertiesDetail(baseTemp, baseDensity.Density, composition)
-
-  density : DDetail = DensityDetail(flowTemp, flowPressure / 1_000, composition)
-  properties: GasBlendProps = PropertiesDetail(flowTemp, density.Density, composition)
-
-var # ? AGA3
-  orificeDiameter : Diameter = thermalExpansion(alphaOrifice, orificePlateBoreDiameter, ReferenceTemp, flowTemp)
-  meterDiameter : Diameter = thermalExpansion(alphaPipe, meterInternalDiameter, ReferenceTemp, flowTemp)
-
-  beta : Beta = diameterRatio(orificeDiameter, meterDiameter)
-  velocityFactor : Velocity = velocityFactor(beta)
-
-  dischargeCoefs : OrificeCoefsOfDischarge = dischargeConstants(meterDiameter, beta)
+type
+  Flows = tuple
+    Mass : float
+    Actual : float
+    Base : float
 
 proc molLToKgm3 (molarMass : MolarMass, density : Density) : Density =
   # ? molarMass is in g/mol
   # ? density is in mol/l
   result = density * molarMass
 
-var
-  Kappa : float
-  SiBaseDensity : Density = molLToKgm3(baseProperties.MolarMass, baseDensity.Density)
-  SiDensity : Density = molLToKgm3(properties.MolarMass, density.Density)
+proc orificeCalculator*(
+  flowTemp : float,
+  flowPressure : float,
+  differentialPressure: float,
 
-if properties.Kappa > 0:
-  Kappa = properties.Kappa
-else:
-  Kappa = 1
+  composition : Composition,
+  pipeInternalDiameter : float,
+  orificeInternalDiameter : float,
+  alphaPipe : float,
+  alphaOrifice : float,
+  baseTemp : float,
+  basePressure : float
+) : Flows {.exportc.} =
+  var
+    # ? deg C to deg K
+    fT : float = flowTemp + 273.15
+    bT : float = baseTemp + 273.15
 
-type
-  Flows = tuple
-    Mass : MassFlow
-    Actual : MassFlow
-    Base : MassFlow
+    # ? mm to m
+    pipeId : float = pipeInternalDiameter / 1000
+    orificeId : float = orificeInternalDiameter / 1000
 
-var
-  expansionFactor : ExpansionFactor = expansionFactor(
-    beta,
-    differentialPressure,
-    flowPressure,
-    Kappa
+    # ? To proper decimal level
+    pipeA : float = alphaPipe * pow(10, -6.0)
+    orificeA : float = alphaOrifice * pow(10, -6.0)
+
+  var # ? AGA8
+    baseDensity : DDetail = DensityDetail(bT, basePressure / 1_000, composition)
+    baseProperties : GasBlendProps = PropertiesDetail(bT, baseDensity.Density, composition)
+
+    density : DDetail = DensityDetail(fT, flowPressure / 1_000, composition)
+    properties: GasBlendProps = PropertiesDetail(fT, density.Density, composition)
+
+  var # ? AGA3
+    orificeDiameter : Diameter = thermalExpansion(orificeA, orificeId, ReferenceTemp, fT)
+    meterDiameter : Diameter = thermalExpansion(pipeA, pipeId, ReferenceTemp, fT)
+
+    beta : Beta = diameterRatio(orificeDiameter, meterDiameter)
+    velocityFactor : Velocity = velocityFactor(beta)
+
+    dischargeCoefs : OrificeCoefsOfDischarge = dischargeConstants(meterDiameter, beta)
+
+  var
+    Kappa : float
+    SiBaseDensity : Density = molLToKgm3(baseProperties.MolarMass, baseDensity.Density)
+    SiDensity : Density = molLToKgm3(properties.MolarMass, density.Density)
+
+  if properties.Kappa > 0:
+    Kappa = properties.Kappa
+  else:
+    Kappa = 1
+
+  var
+    expansionFactor : ExpansionFactor = expansionFactor(
+      beta,
+      differentialPressure,
+      flowPressure,
+      Kappa
+    )
+    iterationFlowFactor : IterationFlowFactor = iterationFlowFactor(
+      orificeDiameter,
+      meterDiameter,
+      differentialPressure,
+      velocityFactor,
+      0.0102680 / 1000,
+      SiDensity,
+      expansionFactor
+    )
+    dischargeCoefficient : DischargeCoef = dischargeCoefficient(dischargeCoefs, iterationFlowFactor)
+
+  result = (
+    massFlow(
+      dischargeCoefficient.dFT,
+      orificeDiameter,
+      differentialPressure,
+      velocityFactor,
+      SiDensity,
+      expansionFactor
+    ),
+    actualFlow(
+      dischargeCoefficient.dFT,
+      orificeDiameter,
+      differentialPressure,
+      velocityFactor,
+      SiDensity,
+      expansionFactor
+    ),
+    baseFlow(
+      dischargeCoefficient.dFT,
+      orificeDiameter,
+      differentialPressure,
+      velocityFactor,
+      SiBaseDensity,
+      SiDensity,
+      expansionFactor
+    )
   )
-  iterationFlowFactor : IterationFlowFactor = iterationFlowFactor(
-    orificeDiameter,
-    meterDiameter,
-    differentialPressure,
-    velocityFactor,
-    0.0102680 / 1000,
-    SiDensity,
-    expansionFactor
-  )
-  dischargeCoefficient : DischargeCoef = dischargeCoefficient(dischargeCoefs, iterationFlowFactor)
-
-var flows : Flows = (
-  massFlow(
-    dischargeCoefficient.dFT,
-    orificeDiameter,
-    differentialPressure,
-    velocityFactor,
-    SiDensity,
-    expansionFactor
-  ),
-  actualFlow(
-    dischargeCoefficient.dFT,
-    orificeDiameter,
-    differentialPressure,
-    velocityFactor,
-    SiDensity,
-    expansionFactor
-  ),
-  baseFlow(
-    dischargeCoefficient.dFT,
-    orificeDiameter,
-    differentialPressure,
-    velocityFactor,
-    SiBaseDensity,
-    SiDensity,
-    expansionFactor
-  )
-)
 
 #[
   echo "d => ", orificeDiameter
@@ -152,5 +133,3 @@ var flows : Flows = (
   echo density
   echo properties
 ]#
-
-echo flows.Base * 3051.187, " MCF/day"

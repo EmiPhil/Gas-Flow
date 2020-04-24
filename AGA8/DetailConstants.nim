@@ -686,6 +686,7 @@ const
     ],
   ]
 
+#[
 # * Only the following indices are defined in the C code. The rest are set to 0, so I'm
 # * double checking here that the defined terms are in the correct slots
 assert(kn[13] == 3)
@@ -1180,3 +1181,4 @@ assert(th0i[21][4] == 0)
 assert(th0i[21][5] == 0)
 assert(th0i[21][6] == 0)
 assert(th0i[21][7] == 0)
+]#

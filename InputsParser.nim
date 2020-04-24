@@ -8,7 +8,7 @@ type
 
   InputData = tuple
     Composition : Composition
-    MeterInternalDiameter : MeterInternalDiameter
+    PipeInternalDiameter : PipeInternalDiameter
     OrificePlateBoreDiameter : OrificePlateBoreDiameter
     PipeExpansionCoef : Coef
     OrificePlateExpansionCoef : Coef
@@ -50,7 +50,7 @@ proc parseInput*(jsonStr: string): InputData =
     # echo "WARN: Mol masses do not exactly equal 100 (", total, ")."
     
 
-  result[1] = jsonNode["meterInternalDiameter"].getFloat()
+  result[1] = jsonNode["pipeInternalDiameter"].getFloat()
   result[2] = jsonNode["orificePlateBoreDiameter"].getFloat()
 
   result[3] = jsonNode["pipeExpansionCoef"].getFloat()
