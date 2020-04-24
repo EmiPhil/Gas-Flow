@@ -5,22 +5,36 @@ import aga3
 units = "US"
 l_units, T_units, P_units, dP_units, rho_units, mflow_units, vflow_units, alpha_units, mu_units = aga3.set_units(units)
 #inputs (required)
-T_f	= 210.0
-P_f = 14.696
-dP = 110.1736
-d_orifice = 1.45311
+T_f	= 97.649
+P_f = 87.518
+dP = 120.963
+d_orifice = 0.625
 alpha_orifice = 9.25 * (10**-6)
-D_pipe = 1.93945
+D_pipe = 3.073
 alpha_pipe = 6.2 * (10**-6)
 #inputs (optional, set to default values)
 downstream_tap = False
 T_r = aga3.T_r
-k = -1.0
+k = 1.21891
 mu = 0.28250
+#mu = 0.0102680
 #fluid density at base and flowing
 #NOTE: fluid density should be calculated using AGA8, to be implemented in the future
-rho_f = 58.792
-rho_b = 62.366
+# detail
+#rho_f = 0.345054
+#rho_b = 0.06097086021318933
+#gerg
+#rho_f = 0.344897
+#rho_b = 0.0609621
+# gross method 0
+rho_f = 0.345124
+rho_b = 0.0609724
+# gross method 1
+#rho_f = 0.345132
+#rho_b = 0.0609729
+# gross method 2
+#rho_f = 0.345139
+#rho_b = 0.0609729
 
 #a. At T_f, calculate terms that depend only upon orifice geometry, d, D, beta, E_v, orifice discharge constants
 d = aga3.thermal_expansion(alpha_orifice, d_orifice, T_r, T_f)

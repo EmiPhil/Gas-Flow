@@ -17,7 +17,7 @@ N5 = 459.67				#unit conversion factor (absolute temperature)
 T_r = 68.0	 			#reference temperature
 Pi = 3.14159
 
-def round_sigfigs(num, sig_figs):
+def round_sigfigs(num, sig_fiigs):
     """
 	Round to specified number of sigfigs.
 	Python built in round is to decimal places, while AGA requires rounding to signficant digits
@@ -128,8 +128,9 @@ def thermal_expansion(alpha, d_r, T_r, T_f):
 	#T_r = measured/reference temperature
 	#T_f = flowing temperature
 	#returns d = diameter of orifice plate bore/meter tube at flowing conditions
+	print alpha, d_r, T_r, T_f
 	d = d_r * (1 + alpha * (T_f - T_r))
-	return round_sigfigs(d, 6)
+	return d
 
 def diameter_ratio(d, D):
 	"""
@@ -140,7 +141,7 @@ def diameter_ratio(d, D):
 	#D = meter internal diameter at flowing conditions
 	#returns beta = ratio of orifice plate bore diameter to meter tube internal diameter at flowing conditions
 	beta = d / D
-	return round_sigfigs(beta, 6)
+	return beta
 
 def velocity_factor(beta):
 	"""
@@ -150,7 +151,7 @@ def velocity_factor(beta):
 	#beta = ratio of orifice plate bore diameter to meter tube internal diameter at flowing conditions
 	#returns E_v = velocity of approach factor
 	E_v = 1 / ((1 - beta**4)**(1/2.0))
-	return round_sigfigs(E_v, 6)
+	return E_v
 	
 def discharge_constants(D, beta):
 	"""
@@ -168,28 +169,30 @@ def discharge_constants(D, beta):
 	
 	#Step 1.  Calculate the dimensionless upstream tap location, L1, and dimensionless downstream tap location, L2
 	L1 = N4 / D
-	L1 = round_sigfigs(L1, 6)
+	L1 = L1
 	L2 = N4 / D
-	L2 = round_sigfigs(L2, 6)
+	L2 = L2
 	
 	#Step 2.  Calculate the dimensionless downstream dam height, M2
 	M2 = (2 * L2)/ (1 - beta)
-	M2 = round_sigfigs(M2, 6)
+	M2 = M2
 	
 	#Step 3.  Calculate upstream tap correction factor, T_u
 	T_u = (S2 + S3 * 2.71828**(-8.5*L1) + S4 * 2.71828**(-6.0*L2)) * (beta**4 / (1 - beta**4))
-	T_u = round_sigfigs(T_u, 6)
+	T_u = T_u
 	
 	#Step 4.  Calculate the downstream tap correction factor, T_d
 	T_d = S6 * (M2 + S7 * M2**1.3) * beta**1.1
-	T_d = round_sigfigs(T_d, 6)
+	T_d = T_d
+
+	print L1, L2, M2, T_u, T_d
 	
 	#Step 5.  Calculate small pipe correction factor, T_s
 	if D > (A4 * N4):
 		T_s = 0.0
 	else:
 		T_s = A3 * (1 - beta) * (A4 - D / N4)
-	T_s = round_sigfigs(T_s, 6)
+	T_s = T_s
 	
 	#Step 6.  Calculate the orifice plate coefficient of discharge constants at Reynolds number of 4000
 	C_d0 = A0 + A1 * beta**2 + A2 * beta**8 + T_u + T_d + T_s
@@ -197,7 +200,7 @@ def discharge_constants(D, beta):
 	C_d2 = A6 * beta**4 * 250**0.35
 	C_d3 = S1 * beta**4 * beta**0.8 * 4.75**0.8 * 250**0.35
 	C_d4 = (S5 * T_u + S8 * T_d) * beta**0.8 * 4.75**0.8
-	return round_sigfigs(C_d0, 6), round_sigfigs(C_d1, 6), round_sigfigs(C_d2, 6), round_sigfigs(C_d3,6), round_sigfigs(C_d4,6)
+	return C_d0, C_d1, C_d2, C_d3, C_d4
 
 def upstream_pressure(P_f, dP):
 	"""
@@ -209,7 +212,7 @@ def upstream_pressure(P_f, dP):
 	#returns P_f = flowing pressure (upstream tap)
 	global N3 #unit conversion factor
 	P_f = (dP / N3) + P_f
-	return round_sigfigs(P_f, 6)
+	return P_f
 
 def expansion_factor(beta, dP, P_f, k):
 	"""
@@ -225,15 +228,16 @@ def expansion_factor(beta, dP, P_f, k):
 	
 	#Step 1.  Calculate the orifice differental pressure to flowing pressure ration, x
 	x = dP / (N3 * P_f)
-	x = round_sigfigs(x, 6)
+	x = x
 	
 	#Step 2.  Calculate expansion factor pressure constant, Y_p
 	Y_p = (0.41 + 0.35 * beta**4) / k 
-	Y_p = round_sigfigs(Y_p, 6)
+	Y_p = Y_p
+	print "Y_p = %r" % Y_p
 	
 	#Step 3.  Calculate the expansion factor
 	Y = 1 - (Y_p * x)
-	return round_sigfigs(Y, 6)
+	return Y
 
 def iteration_flow_factor(d, D, dP, E_v, mu, rho_f, Y):
 	"""
@@ -251,16 +255,17 @@ def iteration_flow_factor(d, D, dP, E_v, mu, rho_f, Y):
 	global N_Ic #unit conversion for iteration flow factor
 	#Step 1.  Calculate iteration flow factor intermediate values
 	F_Ic = (4000 * N_Ic * D * mu) / (E_v * Y * d**2)
-	F_Ic = round_sigfigs(F_Ic, 6)
+	F_Ic = F_Ic
 	F_Ip = (2 * rho_f * dP)**(1/2.0)
-	F_Ip = round_sigfigs(F_Ip, 7)
+	F_Ip = F_Ip
+	print(rho_f, dP)
 	
 	#Step 2.  Test for limiting value of iteration flow factor and limit accordingly
 	if F_Ic < 1000 * F_Ip:
 		F_I = F_Ic / F_Ip
 	else:
 		F_I = 1000
-	return round_sigfigs(F_I, 6)
+	return F_I
 
 def discharge_coefficient(C_d0, C_d1, C_d2, C_d3, C_d4, F_I):
 	"""
@@ -289,6 +294,8 @@ def discharge_coefficient(C_d0, C_d1, C_d2, C_d3, C_d4, F_I):
 	while abs(dC_d) >= 0.000005:
 		#Step 2
 		X = F_I / C_dFT
+		print "X = 	%r" % X
+		print "Reynolds = %r" % (4000/X)
 		#Step 3
 		if X < X_c:
 			F_c = C_d0 + (C_d1 * X**0.35 + C_d2 + C_d3 * X**0.8) * X**0.35 + C_d4 * X**0.8
@@ -306,7 +313,15 @@ def discharge_coefficient(C_d0, C_d1, C_d2, C_d3, C_d4, F_I):
 	else:
 		C_df = False
 	
-	return round_sigfigs(C_dFT, 6), C_df
+	return C_dFT, C_df
+
+def mass_flow_2_electric_boogaloo(C_dFT, beta, Y, d, rho_f, dP):
+	global N_c
+	global Pi
+
+	F_mass = (Pi / 4) * N_c * d**2 * (2 * rho_f * dP)**(1/2.0)
+	q_m = (C_dFT / (1 - beta**4)**(1/2.0)) * Y * F_mass
+	return q_m
 	
 def mass_flow(C_dFT, d, dP, E_v, rho_f, Y):
 	"""
@@ -325,11 +340,12 @@ def mass_flow(C_dFT, d, dP, E_v, rho_f, Y):
 	
 	#Step 1.  Calculate the mass flow factor according to the formula:
 	F_mass = (Pi / 4) * N_c * E_v * d**2
-	F_mass = round_sigfigs(F_mass, 6)
+
+	print "F_mass =	 %r" % F_mass
 	
 	#Step 2.  Calculate mass flow rate
 	q_m = F_mass * C_dFT * Y * (2 * rho_f * dP)**(1/2.0)
-	return round_sigfigs(q_m, 6)
+	return q_m
 	
 def actual_flow(C_dFT, d, dP, E_v, rho_f, Y):
 	"""
@@ -348,11 +364,10 @@ def actual_flow(C_dFT, d, dP, E_v, rho_f, Y):
 
 	#Step 1.  Calculate the mass flow factor according to the formula:
 	F_mass = (Pi / 4) * N_c * E_v * d**2
-	F_mass = round_sigfigs(F_mass, 6)	
 	
 	#Step 2.  Calculate volume flow rate
 	q_v = (F_mass * C_dFT * Y * (2 * rho_f * dP)**(1/2.0)) / rho_f
-	return round_sigfigs(q_v, 6)
+	return q_v
 
 def base_flow(C_dFT, d, dP, E_v, rho_b, rho_f, Y):
 	"""
@@ -372,11 +387,10 @@ def base_flow(C_dFT, d, dP, E_v, rho_b, rho_f, Y):
 
 	#Step 1.  Calculate the mass flow factor according to the formula:
 	F_mass = (Pi / 4) * N_c * E_v * d**2
-	F_mass = round_sigfigs(F_mass, 6)
 	
 	#Step 2.  Calculate volume flow rate
 	q_b = (F_mass * C_dFT * Y * (2 * rho_f * dP)**(1/2.0)) / rho_b
-	return round_sigfigs(q_b, 6)
+	return q_b
 	
 def flowing_density_ideal():
 	"""
@@ -420,4 +434,4 @@ def viscosity():
 	Natural Gas Viscosity
 	"""
 	#returns mu = absolute viscosity of the flowing fluid for calculation of Reynolds number or iteration flow factor
-	return 0.010268 #assuming metric units (cP)
+	return 0.0102680 #assuming metric units (cP)

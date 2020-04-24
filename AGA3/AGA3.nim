@@ -41,7 +41,7 @@ const
 
   AlphaUnit* : unit = "m/m-K"
   
-  ViscosityUnit* : unit = "cP"
+  ViscosityUnit* : unit = "Pa.s"
 
 const
   R* : float = 8_314.51 # ? Universal gas constant
@@ -112,9 +112,11 @@ proc dischargeConstants*(meterInternalDiameter : Diameter, beta : Beta) : Orific
   DamHeight = (2 * Location2) / (1 - beta)
 
   # * Step 3. Calculate up and downstream tap correction factors
-  UpstreamTapCorrection = DischargeParams.S[1] +
-    DischargeParams.S[2] * pow(2.71828, (-8.5 * Location1)) +
-    DischargeParams.S[3] * pow(2.71828, (-6.0 * Location2)) * (pow(beta, 4) / (1 - pow(beta, 4)))
+  UpstreamTapCorrection = (
+      DischargeParams.S[1] +
+      DischargeParams.S[2] * pow(2.71828, (-8.5 * Location1)) +
+      DischargeParams.S[3] * pow(2.71828, (-6.0 * Location2))
+   ) * pow(beta, 4) / (1 - pow(beta, 4))
 
   DownstreamTapCorrection = DischargeParams.S[5] *
     (DamHeight + DischargeParams.S[6] * pow(DamHeight, 1.3)) * pow(beta, 1.1)
@@ -189,7 +191,7 @@ proc iterationFlowFactor*(
   # * Step 1. Calculate intermediary values
   flowIc = (4000 * meterInternalDiameter * viscocity) /
     (velocityFactor * expansionFactor * pow(orificePlateBoreDiameter, 2))
-  flowIp = pow((2 * density * differentialPressure), 1 / 2)
+  flowIp = sqrt(2 * density * differentialPressure)
 
   # * Step 2. Test for limiting value of iteration flow factor and limir accordingly
   if flowIc < 1000 * flowIp:
@@ -275,15 +277,8 @@ proc massFlow*(
   # * AGA 3 procedure 4.3.2.10
   # * Calculation of Mass Flow Rate
   
-  var
-    flowMass : float = (PI / 4) * velocityFactor * pow(orificePlateBoreDiameter, 2)
-    densityDp : float
-  
-  densityDp = pow(2 * abs(density) * abs(differentialPressure), 1 / 2)
-  if density < 0 or differentialPressure < 0:
-    densityDp = -densityDp
-  
-  result = flowMass * dischargeCoef * expansionFactor * densityDp
+  var flowMass : float = (PI / 4) * velocityFactor * pow(orificePlateBoreDiameter, 2)
+  result = flowMass * dischargeCoef * expansionFactor * sqrt(2 * density * differentialPressure)
 
 proc actualFlow*(
   dischargeCoef : Coef, # ? dFT

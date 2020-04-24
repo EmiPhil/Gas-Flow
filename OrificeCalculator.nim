@@ -70,13 +70,11 @@ proc molLToKgm3 (molarMass : MolarMass, density : Density) : Density =
   # ? molarMass is in g/mol
   # ? density is in mol/l
   result = density * molarMass
-  #echo density, " -> ", result
 
 var
   Kappa : float
   SiBaseDensity : Density = molLToKgm3(baseProperties.MolarMass, baseDensity.Density)
   SiDensity : Density = molLToKgm3(properties.MolarMass, density.Density)
-  SpecificGravity : float = SiBaseDensity / 1.225
 
 if properties.Kappa > 0:
   Kappa = properties.Kappa
@@ -101,7 +99,7 @@ var
     meterDiameter,
     differentialPressure,
     velocityFactor,
-    0.010268,
+    0.0102680 / 1000,
     SiDensity,
     expansionFactor
   )
@@ -135,25 +133,24 @@ var flows : Flows = (
   )
 )
 
-echo "Mass Flow => ", flows.Mass, " ", MassFlowUnit
-echo "Actual Flow => ", flows.Actual, " ", VolumeFlowUnit
-echo "Base Flow => ", flows.Base, " ", VolumeFlowUnit
-
-#echo baseDensity
-#echo baseProperties
-#echo density
-#echo properties
-echo SiBaseDensity
-echo SpecificGravity
 #[
-var
-  test: GasBlend = calcGasBlend(composition)
-  props: GasBlendComponentProps = test.Props.GasBlendComponentProps
+  echo "d => ", orificeDiameter
+  echo "D => ", meterDiameter
+  echo "beta => ", beta
+  echo "velocity factor => ", velocityFactor
+  echo "expansionFactor => ", expansionFactor
+  echo "iterationFlowFactor => ", iterationFlowFactor
+  echo "coefs => ", dischargeCoefs
+  echo "discharge coef => ", dischargeCoefficient
 
-for name, i in gasIndex.fieldPairs:
-  echo name, " => ", props[i].CalculatedProperties.RatioOfSpecificHeat
+  echo "Mass Flow => ", flows.Mass, " ", MassFlowUnit
+  echo "Actual Flow => ", flows.Actual, " ", VolumeFlowUnit
+  echo "Base Flow => ", flows.Base, " ", VolumeFlowUnit
 
-for name, i in test.fieldPairs:
-  if name != "Props":
-    echo name, " => ", i
+  echo baseDensity
+  echo baseProperties
+  echo density
+  echo properties
 ]#
+
+echo flows.Base * 3051.187, " MCF/day"
