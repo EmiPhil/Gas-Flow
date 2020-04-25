@@ -242,15 +242,12 @@ proc dischargeCoefficient*(
   while abs(coef) >= 0.000005:
     # * Step 2
     reynolds = iterationFlowFactor / result.dFt
-    r80 = pow(abs(reynolds), 0.80)
+    r80 = pow(reynolds, 0.80)
     # * Step 3
     if reynolds < ReynoldXSwitch:
-      r35 = pow(abs(reynolds), 0.35)
-      if reynolds < 0:
-        r35 = -r35
-        r80 = -r80
+      r35 = pow(reynolds, 0.35)
 
-      fC = d0 + (d1 * r35 + d3 * r80) * r35 + d4 * r80
+      fC = d0 + (d1 * r35 + d2 + d3 * r80) * r35 + d4 * r80
       dC = (0.7 * d1 * r35 + 0.35 * d2 + 1.15 * d3 * r80) * r35 + 0.8 * d4 * r80
     else:
       r70 = pow(reynolds, 0.70)
@@ -278,6 +275,7 @@ proc massFlow*(
   # * Calculation of Mass Flow Rate
   
   var flowMass : float = (PI / 4) * velocityFactor * pow(orificePlateBoreDiameter, 2)
+  echo flowMass
   result = flowMass * dischargeCoef * expansionFactor * sqrt(2 * density * differentialPressure)
 
 proc actualFlow*(

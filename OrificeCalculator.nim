@@ -124,12 +124,11 @@ proc orificeCalculator*(
   echo "coefs => ", dischargeCoefs
   echo "discharge coef => ", dischargeCoefficient
 
-  echo "Mass Flow => ", flows.Mass, " ", MassFlowUnit
-  echo "Actual Flow => ", flows.Actual, " ", VolumeFlowUnit
-  echo "Base Flow => ", flows.Base, " ", VolumeFlowUnit
+  echo "Mass Flow => ", result.Mass, " ", MassFlowUnit
+  echo "Actual Flow => ", result.Actual, " ", VolumeFlowUnit
+  echo "Base Flow => ", result.Base, " ", VolumeFlowUnit
 
-  echo baseDensity
-  echo baseProperties
-  echo density
-  echo properties
+  echo "Base density => ", SiBaseDensity
+  echo "Blend density => ", SiDensity
+  echo "Kappa => ", Kappa
 ]#
