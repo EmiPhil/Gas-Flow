@@ -275,7 +275,6 @@ proc massFlow*(
   # * Calculation of Mass Flow Rate
   
   var flowMass : float = (PI / 4) * velocityFactor * pow(orificePlateBoreDiameter, 2)
-  echo flowMass
   result = flowMass * dischargeCoef * expansionFactor * sqrt(2 * density * differentialPressure)
 
 proc actualFlow*(
