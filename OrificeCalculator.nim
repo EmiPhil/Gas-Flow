@@ -1,9 +1,14 @@
 import math
+import json
 
 import "AGA8/Detail.nim"
 import "AGA3/AGA3.nim"
 
 import "Inputs.nim"
+import "InputsParser.nim"
+
+proc parseGasflowJson*(node: JsonNode): InputData {.exportc.} =
+  result = parseNode(node)
 
 type
   Flows = tuple
@@ -131,4 +136,7 @@ proc orificeCalculator*(
   echo "Base density => ", SiBaseDensity
   echo "Blend density => ", SiDensity
   echo "Kappa => ", Kappa
+
+  echo "Props => ", properties
+
 ]#

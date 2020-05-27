@@ -6,7 +6,7 @@ type
   Temperature = float
   Pressure = float
 
-  InputData = tuple
+  InputData* = tuple
     Composition : Composition
     PipeInternalDiameter : PipeInternalDiameter
     OrificePlateBoreDiameter : OrificePlateBoreDiameter
@@ -15,9 +15,7 @@ type
     BaseTemp : Temperature
     BasePressure : Pressure
 
-
-proc parseInput*(jsonStr: string): InputData =
-  let jsonNode = parseJson(jsonStr)
+proc parseNode*(jsonNode: JsonNode): InputData =
   let comp = jsonNode["composition"]
 
   result[0][1]  = comp["methane"].getFloat()
@@ -58,3 +56,6 @@ proc parseInput*(jsonStr: string): InputData =
 
   result[5] = jsonNode["baseTemp"].getFloat()
   result[6] = jsonNode["basePressure"].getFloat()
+
+proc parseInput*(jsonStr: string): InputData =
+  result = parseNode(parseJson(jsonStr))
