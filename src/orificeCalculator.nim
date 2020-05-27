@@ -1,8 +1,8 @@
 import math
 
-include "inputsParser.nim"
-import "aga8/detail.nim"
-import "aga3/aga3.nim"
+include "orificeCalculatorpkg/inputsParser.nim"
+import "orificeCalculatorpkg/aga8/detail.nim"
+import "orificeCalculatorpkg/aga3/aga3.nim"
 
 type
   Flows = tuple
