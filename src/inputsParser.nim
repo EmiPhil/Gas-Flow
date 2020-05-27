@@ -1,5 +1,5 @@
 import json
-import "inputs.nim"
+include "inputs.nim"
 
 type
   Coef = float

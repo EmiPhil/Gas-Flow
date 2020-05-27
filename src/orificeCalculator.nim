@@ -1,11 +1,8 @@
 import math
-import json
 
-include "aga8/detail.nim"
-include "aga3/aga3.nim"
-
-include "inputs.nim"
 include "inputsParser.nim"
+import "aga8/detail.nim"
+import "aga3/aga3.nim"
 
 type
   Flows = tuple
