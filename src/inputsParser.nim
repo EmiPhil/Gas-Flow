@@ -1,5 +1,5 @@
 import json
-import "Inputs.nim"
+import "inputs.nim"
 
 type
   Coef = float
@@ -15,7 +15,7 @@ type
     BaseTemp : Temperature
     BasePressure : Pressure
 
-proc parseNode*(jsonNode: JsonNode): InputData =
+proc parseGasflowJson*(jsonNode: JsonNode): InputData =
   let comp = jsonNode["composition"]
 
   result[0][1]  = comp["methane"].getFloat()
@@ -58,4 +58,4 @@ proc parseNode*(jsonNode: JsonNode): InputData =
   result[6] = jsonNode["basePressure"].getFloat()
 
 proc parseInput*(jsonStr: string): InputData =
-  result = parseNode(parseJson(jsonStr))
+  result = parseGasflowJson(parseJson(jsonStr))

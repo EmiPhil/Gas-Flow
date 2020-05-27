@@ -1,14 +1,11 @@
 import math
 import json
 
-import "AGA8/Detail.nim"
-import "AGA3/AGA3.nim"
+include "aga8/detail.nim"
+include "aga3/aga3.nim"
 
-import "Inputs.nim"
-import "InputsParser.nim"
-
-proc parseGasflowJson*(node: JsonNode): InputData {.exportc.} =
-  result = parseNode(node)
+include "inputs.nim"
+include "inputsParser.nim"
 
 type
   Flows = tuple

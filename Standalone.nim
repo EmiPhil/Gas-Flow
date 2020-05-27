@@ -1,9 +1,9 @@
 import parseopt
 import strutils
 
-import "OrificeCalculator.nim"
+import "src/orificeCalculator.nim"
 
-include "InputsParser.nim"
+include "src/inputsParser.nim"
 
 var p = initOptParser()
 

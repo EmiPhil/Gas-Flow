@@ -1,6 +1,6 @@
 import math
-import "../Inputs.nim"
-include "DetailConstants.nim"
+import "../inputs.nim"
+include "detailConstants.nim"
 
 const TermCount = 58
 
