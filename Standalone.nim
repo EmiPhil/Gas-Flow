@@ -3,7 +3,7 @@ import strutils
 
 import "src/orificeCalculator.nim"
 
-include "src/inputsParser.nim"
+include "src/orificeCalculatorpkg/inputsParser.nim"
 
 var p = initOptParser()
 
