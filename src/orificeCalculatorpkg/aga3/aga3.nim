@@ -191,7 +191,7 @@ proc iterationFlowFactor*(
   # * Step 1. Calculate intermediary values
   flowIc = (4000 * meterInternalDiameter * viscocity) /
     (velocityFactor * expansionFactor * pow(orificePlateBoreDiameter, 2))
-  flowIp = sqrt(abs(2 * density * differentialPressure))
+  flowIp = sqrt(2 * density * differentialPressure)
 
   # * Step 2. Test for limiting value of iteration flow factor and limir accordingly
   if flowIc < 1000 * flowIp:
@@ -275,10 +275,7 @@ proc massFlow*(
   # * Calculation of Mass Flow Rate
   
   var flowMass : float = (PI / 4) * velocityFactor * pow(orificePlateBoreDiameter, 2)
-  result = flowMass * dischargeCoef * expansionFactor * sqrt(abs(2 * density * differentialPressure))
-
-  if (differentialPressure < 0):
-    result *= -1
+  result = flowMass * dischargeCoef * expansionFactor * sqrt(2 * density * differentialPressure)
 
 proc actualFlow*(
   dischargeCoef : Coef, # ? dFT
