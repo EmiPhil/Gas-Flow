@@ -26,8 +26,17 @@ proc orificeCalculator*(
   alphaPipe : float,
   alphaOrifice : float,
   baseTemp : float,
-  basePressure : float
+  basePressure : float,
+  diffLo = 137.8951
 ) : Flows {.exportc.} =
+  if differentialPressure <= diffLo:
+    result = (
+      0.0,
+      0.0,
+      0.0
+    )
+    return
+
   var
     # ? deg C to deg K
     fT : float = flowTemp + 273.15
