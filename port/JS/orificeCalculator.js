@@ -11,7 +11,6 @@ if (typeof Uint16Array === 'undefined') Uint16Array = Array;
 if (typeof Uint32Array === 'undefined') Uint32Array = Array;
 if (typeof Float32Array === 'undefined') Float32Array = Array;
 if (typeof Float64Array === 'undefined') Float64Array = Array;
-var NTI208015 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI207300 = {size: 0,kind: 1,base: null,node: null,finalizer: null};
 var NTI207302 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI207055 = {size: 0,kind: 36,base: null,node: null,finalizer: null};
@@ -34,7 +33,6 @@ var NTI205035 = {size: 0,kind: 36,base: null,node: null,finalizer: null};
 var NTI206472 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI206046 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI206044 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI124 = {size: 0,kind: 36,base: null,node: null,finalizer: null};
 var NTI206042 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI206048 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI3642 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
@@ -48,6 +46,12 @@ var NTI3626 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI3628 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI3658 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI138 = {size: 0,kind: 28,base: null,node: null,finalizer: null};
+var NTI124 = {size: 0,kind: 36,base: null,node: null,finalizer: null};
+var NTI208015 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NNI208015 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI124, name: "Field0", sons: null}, 
+{kind: 1, offset: "Field1", len: 0, typ: NTI124, name: "Field1", sons: null}, 
+{kind: 1, offset: "Field2", len: 0, typ: NTI124, name: "Field2", sons: null}]};
+NTI208015.node = NNI208015;
 var NNI3658 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI3658.node = NNI3658;
 var NNI3628 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
@@ -125,10 +129,6 @@ NTI207142.node = NNI207142;
 var NNI207302 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI207055, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI207300, name: "Field1", sons: null}]};
 NTI207302.node = NNI207302;
-var NNI208015 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI124, name: "Field0", sons: null}, 
-{kind: 1, offset: "Field1", len: 0, typ: NTI124, name: "Field1", sons: null}, 
-{kind: 1, offset: "Field2", len: 0, typ: NTI124, name: "Field2", sons: null}]};
-NTI208015.node = NNI208015;
 				var ki_205371 = [4.6192549999999999e-01, 4.4791530000000002e-01, 4.5574890000000001e-01, 5.2792090000000003e-01, 5.8374899999999996e-01, 6.4069370000000003e-01, 6.3414230000000005e-01, 6.7385770000000000e-01, 6.7983070000000001e-01, 7.1751180000000003e-01, 7.5251889999999999e-01, 7.8495499999999996e-01, 8.1527309999999997e-01, 8.4378260000000005e-01, 3.5149160000000002e-01, 4.1869540000000000e-01, 4.5338940000000000e-01, 3.8258680000000000e-01, 4.6182630000000002e-01, 3.5898880000000000e-01, 4.2165510000000000e-01];
 				var ei_205144 = [1.5131829999999999e+02, 9.9737780000000001e+01, 2.4196060000000000e+02, 2.4416669999999999e+02, 2.9811829999999998e+02, 3.2406889999999999e+02, 3.3763889999999998e+02, 3.6559989999999999e+02, 3.7068230000000000e+02, 4.0263629300000002e+02, 4.2772262999999998e+02, 4.5032502199999999e+02, 4.7084089100000000e+02, 4.8955837300000002e+02, 2.6957940000000001e+01, 1.2276670000000000e+02, 1.0553480000000000e+02, 5.1401559999999995e+02, 2.9635500000000002e+02, 2.6101109999999998e+00, 1.1962990000000001e+02];
 													var gn_205110 = [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0];
@@ -663,17 +663,17 @@ function x_terms_detail_205774(comp_205776) {
 		var exit_205784 = true;
 		L1: do {
 			var i_205794 = 0;
-			var res_208151 = 1;
+			var res_208156 = 1;
 			L2: do {
 					L3: while (true) {
-					if (!(res_208151 <= 21)) break L3;
-						i_205794 = res_208151;
+					if (!(res_208156 <= 21)) break L3;
+						i_205794 = res_208156;
 						if ((9.9999999999999995e-08 < abs_12649((comp_205776[chckIndx(i_205794, 1, (comp_205776 != null ? comp_205776.length : 0)+1-1)-1] - x_fields_205644[0][chckIndx(i_205794, 1, (x_fields_205644[0] != null ? x_fields_205644[0].length : 0)+1-1)-1])))) {
 						exit_205784 = false;
 						}
 						
 						x_fields_205644[0][chckIndx(i_205794, 1, (x_fields_205644[0] != null ? x_fields_205644[0].length : 0)+1-1)-1] = comp_205776[chckIndx(i_205794, 1, (comp_205776 != null ? comp_205776.length : 0)+1-1)-1];
-						res_208151 = addInt(res_208151, 1);
+						res_208156 = addInt(res_208156, 1);
 					}
 			} while(false);
 		} while(false);
@@ -684,26 +684,26 @@ function x_terms_detail_205774(comp_205776) {
 		k3_205638[0] = 0.0;
 		L4: do {
 			var i_205804 = 0;
-			var res_208157 = 1;
+			var res_208162 = 1;
 			L5: do {
 					L6: while (true) {
-					if (!(res_208157 <= 18)) break L6;
-						i_205804 = res_208157;
+					if (!(res_208162 <= 18)) break L6;
+						i_205804 = res_208162;
 						bs_205476[0][chckIndx(i_205804, 1, (bs_205476[0] != null ? bs_205476[0].length : 0)+1-1)-1] = 0.0;
-						res_208157 = addInt(res_208157, 1);
+						res_208162 = addInt(res_208162, 1);
 					}
 			} while(false);
 		} while(false);
 		L7: do {
 			var i_205869 = 0;
 			var gas_a_205870 = 0.0;
-			var i_208174 = 1;
-			if ((i_208174 <= 21)) {
+			var i_208179 = 1;
+			if ((i_208179 <= 21)) {
 			L8: do {
 					L9: while (true) {
 					if (!true) break L9;
-						i_205869 = i_208174;
-						gas_a_205870 = comp_205776[chckIndx(i_208174, 1, (comp_205776 != null ? comp_205776.length : 0)+1-1)-1];
+						i_205869 = i_208179;
+						gas_a_205870 = comp_205776[chckIndx(i_208179, 1, (comp_205776 != null ? comp_205776.length : 0)+1-1)-1];
 						L10: do {
 							if ((gas_a_205870 == 0.0)) {
 							break L10;
@@ -717,22 +717,22 @@ function x_terms_detail_205774(comp_205776) {
 							HEX2BHEX3D_164861(f_205780, 0, (xi2_205783 * fi_205392[chckIndx(i_205869, 1, (fi_205392 != null ? fi_205392.length : 0)+1-1)-1]));
 							L11: do {
 								var j_205915 = 0;
-								var res_208165 = 1;
+								var res_208170 = 1;
 								L12: do {
 										L13: while (true) {
-										if (!(res_208165 <= 18)) break L13;
-											j_205915 = res_208165;
+										if (!(res_208170 <= 18)) break L13;
+											j_205915 = res_208170;
 											HEX2BHEX3D_164861(bs_205476[0], chckIndx(j_205915, 1, (bs_205476[0] != null ? bs_205476[0].length : 0)+1-1)-1, (xi2_205783 * bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1][chckIndx(i_205869, 1, (bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1].length : 0)+1-1)-1][chckIndx(j_205915, 1, (bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1][chckIndx(i_205869, 1, (bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1][chckIndx(i_205869, 1, (bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205869, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1].length : 0)+1-1)-1].length : 0)+1-1)-1]));
-											res_208165 = addInt(res_208165, 1);
+											res_208170 = addInt(res_208170, 1);
 										}
 								} while(false);
 							} while(false);
 						} while(false);
-						if ((21 <= i_208174)) {
+						if ((21 <= i_208179)) {
 						break L8;
 						}
 						
-						i_208174 = addInt(i_208174, 1);
+						i_208179 = addInt(i_208179, 1);
 					}
 			} while(false);
 			}
@@ -742,11 +742,11 @@ function x_terms_detail_205774(comp_205776) {
 		u_205781[0] = Math.pow(u_205781[0], 2.0000000000000000e+00);
 		L14: do {
 			var i_205933 = 0;
-			var res_208192 = 1;
+			var res_208197 = 1;
 			L15: do {
 					L16: while (true) {
-					if (!(res_208192 <= 20)) break L16;
-						i_205933 = res_208192;
+					if (!(res_208197 <= 20)) break L16;
+						i_205933 = res_208197;
 						L17: do {
 							if ((comp_205776[chckIndx(i_205933, 1, (comp_205776 != null ? comp_205776.length : 0)+1-1)-1] == 0.0)) {
 							break L17;
@@ -754,13 +754,13 @@ function x_terms_detail_205774(comp_205776) {
 							
 							L18: do {
 								var j_205940 = 0;
-								var colontmp__208186 = 0;
-								colontmp__208186 = addInt(i_205933, 1);
-								var res_208187 = colontmp__208186;
+								var colontmp__208191 = 0;
+								colontmp__208191 = addInt(i_205933, 1);
+								var res_208192 = colontmp__208191;
 								L19: do {
 										L20: while (true) {
-										if (!(res_208187 <= 21)) break L20;
-											j_205940 = res_208187;
+										if (!(res_208192 <= 21)) break L20;
+											j_205940 = res_208192;
 											L21: do {
 												if ((comp_205776[chckIndx(j_205940, 1, (comp_205776 != null ? comp_205776.length : 0)+1-1)-1] == 0.0)) {
 												break L21;
@@ -772,23 +772,23 @@ function x_terms_detail_205774(comp_205776) {
 												HEX2BHEX3D_164861(g_205777, 0, (xij_205782 * gij5_205446[0][chckIndx(i_205933, 1, (gij5_205446[0] != null ? gij5_205446[0].length : 0)+1-1)-1][chckIndx(j_205940, 1, (gij5_205446[0][chckIndx(i_205933, 1, (gij5_205446[0] != null ? gij5_205446[0].length : 0)+1-1)-1] != null ? gij5_205446[0][chckIndx(i_205933, 1, (gij5_205446[0] != null ? gij5_205446[0].length : 0)+1-1)-1].length : 0)+1-1)-1]));
 												L22: do {
 													var k_205972 = 0;
-													var res_208181 = 1;
+													var res_208186 = 1;
 													L23: do {
 															L24: while (true) {
-															if (!(res_208181 <= 18)) break L24;
-																k_205972 = res_208181;
+															if (!(res_208186 <= 18)) break L24;
+																k_205972 = res_208186;
 																HEX2BHEX3D_164861(bs_205476[0], chckIndx(k_205972, 1, (bs_205476[0] != null ? bs_205476[0].length : 0)+1-1)-1, (xij_205782 * bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1][chckIndx(j_205940, 1, (bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1].length : 0)+1-1)-1][chckIndx(k_205972, 1, (bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1][chckIndx(j_205940, 1, (bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1][chckIndx(j_205940, 1, (bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1] != null ? bsnij2_205470[0][chckIndx(i_205933, 1, (bsnij2_205470[0] != null ? bsnij2_205470[0].length : 0)+1-1)-1].length : 0)+1-1)-1].length : 0)+1-1)-1]));
-																res_208181 = addInt(res_208181, 1);
+																res_208186 = addInt(res_208186, 1);
 															}
 													} while(false);
 												} while(false);
 											} while(false);
-											res_208187 = addInt(res_208187, 1);
+											res_208192 = addInt(res_208192, 1);
 										}
 								} while(false);
 							} while(false);
 						} while(false);
-						res_208192 = addInt(res_208192, 1);
+						res_208197 = addInt(res_208197, 1);
 					}
 			} while(false);
 		} while(false);
@@ -797,11 +797,11 @@ function x_terms_detail_205774(comp_205776) {
 		q2_205779 = Math.pow(q_205778[0], 2.0000000000000000e+00);
 		L25: do {
 			var n_205989 = 0;
-			var res_208198 = 13;
+			var res_208203 = 13;
 			L26: do {
 					L27: while (true) {
-					if (!(res_208198 <= 58)) break L27;
-						n_205989 = res_208198;
+					if (!(res_208203 <= 58)) break L27;
+						n_205989 = res_208203;
 						csn_205481[0][chckIndx(n_205989, 1, (csn_205481[0] != null ? csn_205481[0].length : 0)+1-1)-1] = (an_205068[chckIndx(n_205989, 1, (an_205068 != null ? an_205068.length : 0)+1-1)-1] * Math.pow(u_205781[0], un_205094[chckIndx(n_205989, 1, (un_205094 != null ? un_205094.length : 0)+1-1)-1]));
 						if ((gn_205110[chckIndx(n_205989, 1, (gn_205110 != null ? gn_205110.length : 0)+1-1)-1] == 1)) {
 						HEX2AHEX3D_164841(csn_205481[0], chckIndx(n_205989, 1, (csn_205481[0] != null ? csn_205481[0].length : 0)+1-1)-1, g_205777[0]);
@@ -815,7 +815,7 @@ function x_terms_detail_205774(comp_205776) {
 						HEX2AHEX3D_164841(csn_205481[0], chckIndx(n_205989, 1, (csn_205481[0] != null ? csn_205481[0].length : 0)+1-1)-1, f_205780[0]);
 						}
 						
-						res_208198 = addInt(res_208198, 1);
+						res_208203 = addInt(res_208203, 1);
 					}
 			} while(false);
 		} while(false);
@@ -855,13 +855,13 @@ function alpha_rdetail_206254(itau_206256, idel_206257, temp_206258, density_206
 		if ((9.9999999999999995e-08 < abs_12649((temp_206258 - temp_old_206234[0])))) {
 		L1: do {
 			var n_206300 = 0;
-			var res_208214 = 1;
+			var res_208219 = 1;
 			L2: do {
 					L3: while (true) {
-					if (!(res_208214 <= 58)) break L3;
-						n_206300 = res_208214;
+					if (!(res_208219 <= 58)) break L3;
+						n_206300 = res_208219;
 						tun_206240[0][chckIndx(n_206300, 1, (tun_206240[0] != null ? tun_206240[0].length : 0)+1-1)-1] = Math.pow(temp_206258, -(un_205094[chckIndx(n_206300, 1, (un_205094 != null ? un_205094.length : 0)+1-1)-1]));
-						res_208214 = addInt(res_208214, 1);
+						res_208219 = addInt(res_208219, 1);
 					}
 			} while(false);
 		} while(false);
@@ -872,37 +872,37 @@ function alpha_rdetail_206254(itau_206256, idel_206257, temp_206258, density_206
 		dknn_206286[chckIndx(0, 0, (dknn_206286 != null ? dknn_206286.length : 0)+0-1)-0] = 1.0000000000000000e+00;
 		L4: do {
 			var n_206316 = 0;
-			var res_208220 = 1;
+			var res_208225 = 1;
 			L5: do {
 					L6: while (true) {
-					if (!(res_208220 <= 9)) break L6;
-						n_206316 = res_208220;
+					if (!(res_208225 <= 9)) break L6;
+						n_206316 = res_208225;
 						dknn_206286[chckIndx(n_206316, 0, (dknn_206286 != null ? dknn_206286.length : 0)+0-1)-0] = (dred_206263 * dknn_206286[chckIndx(subInt(n_206316, 1), 0, (dknn_206286 != null ? dknn_206286.length : 0)+0-1)-0]);
-						res_208220 = addInt(res_208220, 1);
+						res_208225 = addInt(res_208225, 1);
 					}
 			} while(false);
 		} while(false);
 		expn_206290[chckIndx(0, 0, (expn_206290 != null ? expn_206290.length : 0)+0-1)-0] = 1.0000000000000000e+00;
 		L7: do {
 			var n_206332 = 0;
-			var res_208226 = 1;
+			var res_208231 = 1;
 			L8: do {
 					L9: while (true) {
-					if (!(res_208226 <= 4)) break L9;
-						n_206332 = res_208226;
+					if (!(res_208231 <= 4)) break L9;
+						n_206332 = res_208231;
 						expn_206290[chckIndx(n_206332, 0, (expn_206290 != null ? expn_206290.length : 0)+0-1)-0] = Math.exp(-(dknn_206286[chckIndx(n_206332, 0, (dknn_206286 != null ? dknn_206286.length : 0)+0-1)-0]));
-						res_208226 = addInt(res_208226, 1);
+						res_208231 = addInt(res_208231, 1);
 					}
 			} while(false);
 		} while(false);
 		rt_206269 = (8.3145100000000003e+00 * temp_206258);
 		L10: do {
 			var n_206342 = 0;
-			var res_208234 = 1;
+			var res_208239 = 1;
 			L11: do {
 					L12: while (true) {
-					if (!(res_208234 <= 58)) break L12;
-						n_206342 = res_208234;
+					if (!(res_208239 <= 58)) break L12;
+						n_206342 = res_208239;
 						coef_t1_206281[chckIndx(n_206342, 1, (coef_t1_206281 != null ? coef_t1_206281.length : 0)+1-1)-1] = (8.3145100000000003e+00 * (un_205094[chckIndx(n_206342, 1, (un_205094 != null ? un_205094.length : 0)+1-1)-1] - 1.0000000000000000e+00));
 						coef_t2_206282[chckIndx(n_206342, 1, (coef_t2_206282 != null ? coef_t2_206282.length : 0)+1-1)-1] = (coef_t1_206281[chckIndx(n_206342, 1, (coef_t1_206281 != null ? coef_t1_206281.length : 0)+1-1)-1] * un_205094[chckIndx(n_206342, 1, (un_205094 != null ? un_205094.length : 0)+1-1)-1]);
 						if ((n_206342 <= 18)) {
@@ -924,17 +924,17 @@ function alpha_rdetail_206254(itau_206256, idel_206257, temp_206258, density_206
 						coef_d3_206280[chckIndx(n_206342, 1, (coef_d3_206280 != null ? coef_d3_206280.length : 0)+1-1)-1] = (((bkd_206262 - 2.0000000000000000e+00) * coef_d2_206279[chckIndx(n_206342, 1, (coef_d2_206279 != null ? coef_d2_206279.length : 0)+1-1)-1]) + (ckd_206261 * ((1.0000000000000000e+00 - k_float_206270) - (2.0000000000000000e+00 * bkd_206262))));
 						}
 						
-						res_208234 = addInt(res_208234, 1);
+						res_208239 = addInt(res_208239, 1);
 					}
 			} while(false);
 		} while(false);
 		L13: do {
 			var n_206363 = 0;
-			var res_208240 = 1;
+			var res_208245 = 1;
 			L14: do {
 					L15: while (true) {
-					if (!(res_208240 <= 58)) break L15;
-						n_206363 = res_208240;
+					if (!(res_208245 <= 58)) break L15;
+						n_206363 = res_208245;
 						s0_206265 = (sum0_206276[chckIndx(n_206363, 1, (sum0_206276 != null ? sum0_206276.length : 0)+1-1)-1] + sum_b_206277[chckIndx(n_206363, 1, (sum_b_206277 != null ? sum_b_206277.length : 0)+1-1)-1]);
 						s1_206266 = ((sum0_206276[chckIndx(n_206363, 1, (sum0_206276 != null ? sum0_206276.length : 0)+1-1)-1] * coef_d1_206278[chckIndx(n_206363, 1, (coef_d1_206278 != null ? coef_d1_206278.length : 0)+1-1)-1]) + sum_b_206277[chckIndx(n_206363, 1, (sum_b_206277 != null ? sum_b_206277.length : 0)+1-1)-1]);
 						s2_206267 = (sum0_206276[chckIndx(n_206363, 1, (sum0_206276 != null ? sum0_206276.length : 0)+1-1)-1] * coef_d2_206279[chckIndx(n_206363, 1, (coef_d2_206279 != null ? coef_d2_206279.length : 0)+1-1)-1]);
@@ -949,7 +949,7 @@ function alpha_rdetail_206254(itau_206256, idel_206257, temp_206258, density_206
 						HEX2BHEX3D_164861(result_206260["Field2"], "Field0", (coef_t2_206282[chckIndx(n_206363, 1, (coef_t2_206282 != null ? coef_t2_206282.length : 0)+1-1)-1] * s0_206265));
 						}
 						
-						res_208240 = addInt(res_208240, 1);
+						res_208245 = addInt(res_208245, 1);
 					}
 			} while(false);
 		} while(false);
@@ -1003,11 +1003,11 @@ function density_detail_206567(temp_206569, pressure_206570, comp_206571, densit
 		vlog_206576[0] = -(Math.log(result_206574.Field0));
 		L1: do {
 			var it_206590 = 0;
-			var res_208145 = 1;
+			var res_208150 = 1;
 			L2: do {
 					L3: while (true) {
-					if (!(res_208145 <= 20)) break L3;
-						it_206590 = res_208145;
+					if (!(res_208150 <= 20)) break L3;
+						it_206590 = res_208150;
 							if ((vlog_206576[0] < -7.0000000000000000e+00)) Tmp4 = true; else {								Tmp4 = (1.0000000000000000e+02 < vlog_206576[0]);							}						if (Tmp4) {
 						result_206574.Field1 = 1;
 						result_206574.Field2 = nimCopy(null, makeNimstrLit("Calculation failed to converge in DETAIL method, ideal gas density returned."), NTI138);
@@ -1031,7 +1031,7 @@ function density_detail_206567(temp_206569, pressure_206570, comp_206571, densit
 							
 						}
 						
-						res_208145 = addInt(res_208145, 1);
+						res_208150 = addInt(res_208150, 1);
 					}
 			} while(false);
 		} while(false);
@@ -1050,19 +1050,19 @@ function molar_mass_detail_206492(composition_206494) {
 		L1: do {
 			var i_206506 = 0;
 			var percent_composition_206507 = 0.0;
-			var i_208246 = 1;
-			if ((i_208246 <= 21)) {
+			var i_208251 = 1;
+			if ((i_208251 <= 21)) {
 			L2: do {
 					L3: while (true) {
 					if (!true) break L3;
-						i_206506 = i_208246;
-						percent_composition_206507 = composition_206494[chckIndx(i_208246, 1, (composition_206494 != null ? composition_206494.length : 0)+1-1)-1];
+						i_206506 = i_208251;
+						percent_composition_206507 = composition_206494[chckIndx(i_208251, 1, (composition_206494 != null ? composition_206494.length : 0)+1-1)-1];
 						result_206495 = (result_206495 + (percent_composition_206507 * molar_masses_205029[chckIndx(i_206506, 1, (molar_masses_205029 != null ? molar_masses_205029.length : 0)+1-1)-1]));
-						if ((21 <= i_208246)) {
+						if ((21 <= i_208251)) {
 						break L2;
 						}
 						
-						i_208246 = addInt(i_208246, 1);
+						i_208251 = addInt(i_208251, 1);
 					}
 			} while(false);
 			}
@@ -1101,13 +1101,13 @@ function alpha0detail_206094(temp_206096, density_206097, comp_206098) {
 		L1: do {
 			var i_206124 = 0;
 			var gas_percentage_206125 = 0.0;
-			var i_208257 = 1;
-			if ((i_208257 <= 21)) {
+			var i_208262 = 1;
+			if ((i_208262 <= 21)) {
 			L2: do {
 					L3: while (true) {
 					if (!true) break L3;
-						i_206124 = i_208257;
-						gas_percentage_206125 = comp_206098[chckIndx(i_208257, 1, (comp_206098 != null ? comp_206098.length : 0)+1-1)-1];
+						i_206124 = i_208262;
+						gas_percentage_206125 = comp_206098[chckIndx(i_208262, 1, (comp_206098 != null ? comp_206098.length : 0)+1-1)-1];
 						L4: do {
 							if ((gas_percentage_206125 == 0.0)) {
 							break L4;
@@ -1119,11 +1119,11 @@ function alpha0detail_206094(temp_206096, density_206097, comp_206098) {
 							sum_hyp2_206107[0] = 0.0;
 							L5: do {
 								var j_206135 = 0;
-								var res_208252 = 4;
+								var res_208257 = 4;
 								L6: do {
 										L7: while (true) {
-										if (!(res_208252 <= 7)) break L7;
-											j_206135 = res_208252;
+										if (!(res_208257 <= 7)) break L7;
+											j_206135 = res_208257;
 											L8: do {
 												th0_206112 = th0i_205636[chckIndx(i_206124, 1, (th0i_205636 != null ? th0i_205636.length : 0)+1-1)-1][chckIndx(j_206135, 1, (th0i_205636[chckIndx(i_206124, 1, (th0i_205636 != null ? th0i_205636.length : 0)+1-1)-1] != null ? th0i_205636[chckIndx(i_206124, 1, (th0i_205636 != null ? th0i_205636.length : 0)+1-1)-1].length : 0)+1-1)-1];
 												n0_206113 = n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1][chckIndx(j_206135, 1, (n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1] != null ? n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1].length : 0)+1-1)-1];
@@ -1150,7 +1150,7 @@ function alpha0detail_206094(temp_206096, density_206097, comp_206098) {
 												}
 												
 											} while(false);
-											res_208252 = addInt(res_208252, 1);
+											res_208257 = addInt(res_208257, 1);
 										}
 								} while(false);
 							} while(false);
@@ -1158,11 +1158,11 @@ function alpha0detail_206094(temp_206096, density_206097, comp_206098) {
 							HEX2BHEX3D_164861(result_206099[0], "Field1", (gas_percentage_206125 * (((logx_d_206104 + n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1][chckIndx(1, 1, (n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1] != null ? n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1].length : 0)+1-1)-1]) - (n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1][chckIndx(3, 1, (n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1] != null ? n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1].length : 0)+1-1)-1] * (1.0000000000000000e+00 + log_t_206100))) + sum_hyp1_206106[0])));
 							HEX2BHEX3D_164861(result_206099[0], "Field2", (-(gas_percentage_206125) * (n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1][chckIndx(3, 1, (n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1] != null ? n0i_205581[chckIndx(i_206124, 1, (n0i_205581 != null ? n0i_205581.length : 0)+1-1)-1].length : 0)+1-1)-1] + sum_hyp2_206107[0])));
 						} while(false);
-						if ((21 <= i_208257)) {
+						if ((21 <= i_208262)) {
 						break L2;
 						}
 						
-						i_208257 = addInt(i_208257, 1);
+						i_208262 = addInt(i_208262, 1);
 					}
 			} while(false);
 			}
@@ -1310,7 +1310,7 @@ function iteration_flow_factor_207268(orifice_plate_bore_diameter_207270, meter_
 		var flow_ic_207278 = 0.0;
 		var flow_ip_207279 = 0.0;
 		flow_ic_207278 = (((4.0000000000000000e+03 * meter_internal_diameter_207271) * viscocity_207274) / ((velocity_factor_207273 * expansion_factor_207276) * Math.pow(orifice_plate_bore_diameter_207270, 2.0000000000000000e+00)));
-		flow_ip_207279 = Math.sqrt(abs_12649(((2.0000000000000000e+00 * density_207275) * differential_pressure_207272)));
+		flow_ip_207279 = Math.sqrt(((2.0000000000000000e+00 * density_207275) * differential_pressure_207272));
 		if ((flow_ic_207278 < (1.0000000000000000e+03 * flow_ip_207279))) {
 		result_207277 = (flow_ic_207278 / flow_ip_207279);
 		}
@@ -1326,18 +1326,18 @@ function iteration_flow_factor_207268(orifice_plate_bore_diameter_207270, meter_
 function discharge_coefficient_207324(discharge_coefs_207326, iteration_flow_factor_207327) {
 	var result_207328 = {Field0: 0.0, Field1: false};
 
-		var colontmp__208260 = {Field0: 0.0, Field1: 0.0, Field2: 0.0, Field3: 0.0, Field4: 0.0};
+		var colontmp__208265 = {Field0: 0.0, Field1: 0.0, Field2: 0.0, Field3: 0.0, Field4: 0.0};
 		var d0_207329 = 0.0;
 		var d1_207330 = 0.0;
 		var d2_207331 = 0.0;
 		var d3_207332 = 0.0;
 		var d4_207333 = 0.0;
-		nimCopy(colontmp__208260, discharge_coefs_207326, NTI207142);
-		d0_207329 = colontmp__208260["Field0"];
-		d1_207330 = colontmp__208260["Field1"];
-		d2_207331 = colontmp__208260["Field2"];
-		d3_207332 = colontmp__208260["Field3"];
-		d4_207333 = colontmp__208260["Field4"];
+		nimCopy(colontmp__208265, discharge_coefs_207326, NTI207142);
+		d0_207329 = colontmp__208265["Field0"];
+		d1_207330 = colontmp__208265["Field1"];
+		d2_207331 = colontmp__208265["Field2"];
+		d3_207332 = colontmp__208265["Field3"];
+		d4_207333 = colontmp__208265["Field4"];
 		var coef_207334 = 1.0000000000000000e+00;
 		var reynolds_207335 = 0.0;
 		var r35_207336 = 0.0;
@@ -1379,74 +1379,80 @@ function discharge_coefficient_207324(discharge_coefs_207326, iteration_flow_fac
 }
 
 function mass_flow_207373(discharge_coef_207375, orifice_plate_bore_diameter_207376, differential_pressure_207377, velocity_factor_207378, density_207379, expansion_factor_207380) {
-	var result_207381 = [0.0];
+	var result_207381 = 0.0;
 
 		var flow_mass_207382 = ((7.8539816339744828e-01 * velocity_factor_207378) * Math.pow(orifice_plate_bore_diameter_207376, 2.0000000000000000e+00));
-		result_207381[0] = (((flow_mass_207382 * discharge_coef_207375) * expansion_factor_207380) * Math.sqrt(abs_12649(((2.0000000000000000e+00 * density_207379) * differential_pressure_207377))));
-		if ((differential_pressure_207377 < 0.0)) {
-		HEX2AHEX3D_164841(result_207381, 0, -1.0000000000000000e+00);
+		result_207381 = (((flow_mass_207382 * discharge_coef_207375) * expansion_factor_207380) * Math.sqrt(((2.0000000000000000e+00 * density_207379) * differential_pressure_207377)));
+
+	return result_207381;
+
+}
+
+function actual_flow_207397(discharge_coef_207399, orifice_plate_bore_diameter_207400, differential_pressure_207401, velocity_factor_207402, density_207403, expansion_factor_207404) {
+	var result_207405 = 0.0;
+
+		result_207405 = (mass_flow_207373(discharge_coef_207399, orifice_plate_bore_diameter_207400, differential_pressure_207401, velocity_factor_207402, density_207403, expansion_factor_207404) / density_207403);
+
+	return result_207405;
+
+}
+
+function base_flow_207419(discharge_coef_207421, orifice_plate_bore_diameter_207422, differential_pressure_207423, velocity_factor_207424, base_density_207425, density_207426, expansion_factor_207427) {
+	var result_207428 = 0.0;
+
+		result_207428 = (mass_flow_207373(discharge_coef_207421, orifice_plate_bore_diameter_207422, differential_pressure_207423, velocity_factor_207424, density_207426, expansion_factor_207427) / base_density_207425);
+
+	return result_207428;
+
+}
+
+function orificeCalculator(flow_temp_208043, flow_pressure_208044, differential_pressure_208045, composition_208046, pipe_internal_diameter_208047, orifice_internal_diameter_208048, alpha_pipe_208049, alpha_orifice_208050, base_temp_208051, base_pressure_208052, diff_lo_208053) {
+	var result_208054 = {Field0: 0.0, Field1: 0.0, Field2: 0.0};
+
+	BeforeRet: do {
+		if ((differential_pressure_208045 <= diff_lo_208053)) {
+		var colontmp__208143 = 0.0;
+		var colontmp__208144 = 0.0;
+		var colontmp__208145 = 0.0;
+		nimCopy(result_208054, {Field0: colontmp__208143, Field1: colontmp__208144, Field2: colontmp__208145}, NTI208015);
+		break BeforeRet;
 		}
 		
-
-	return result_207381[0];
-
-}
-
-function actual_flow_207405(discharge_coef_207407, orifice_plate_bore_diameter_207408, differential_pressure_207409, velocity_factor_207410, density_207411, expansion_factor_207412) {
-	var result_207413 = 0.0;
-
-		result_207413 = (mass_flow_207373(discharge_coef_207407, orifice_plate_bore_diameter_207408, differential_pressure_207409, velocity_factor_207410, density_207411, expansion_factor_207412) / density_207411);
-
-	return result_207413;
-
-}
-
-function base_flow_207427(discharge_coef_207429, orifice_plate_bore_diameter_207430, differential_pressure_207431, velocity_factor_207432, base_density_207433, density_207434, expansion_factor_207435) {
-	var result_207436 = 0.0;
-
-		result_207436 = (mass_flow_207373(discharge_coef_207429, orifice_plate_bore_diameter_207430, differential_pressure_207431, velocity_factor_207432, density_207434, expansion_factor_207435) / base_density_207433);
-
-	return result_207436;
-
-}
-
-function orificeCalculator(flow_temp_208043, flow_pressure_208044, differential_pressure_208045, composition_208046, pipe_internal_diameter_208047, orifice_internal_diameter_208048, alpha_pipe_208049, alpha_orifice_208050, base_temp_208051, base_pressure_208052) {
-	var result_208053 = {Field0: 0.0, Field1: 0.0, Field2: 0.0};
-
-		var f_t_208054 = (flow_temp_208043 + 2.7314999999999998e+02);
-		var b_t_208055 = (base_temp_208051 + 2.7314999999999998e+02);
-		var pipe_id_208057 = (pipe_internal_diameter_208047 / 1.0000000000000000e+03);
-		var orifice_id_208059 = (orifice_internal_diameter_208048 / 1.0000000000000000e+03);
-		var pipe_a_208060 = (alpha_pipe_208049 * Math.pow(1.0000000000000000e+01, -6.0000000000000000e+00));
-		var orifice_a_208061 = (alpha_orifice_208050 * Math.pow(1.0000000000000000e+01, -6.0000000000000000e+00));
-		var base_density_208063 = nimCopy(null, density_detail_206567(b_t_208055, (base_pressure_208052 / 1.0000000000000000e+03), composition_208046, -1.0000000000000000e+00), NTI206559);
-		var base_properties_208064 = nimCopy(null, properties_detail_206683(b_t_208055, base_density_208063.Field0, composition_208046), NTI206646);
-		var density_208066 = nimCopy(null, density_detail_206567(f_t_208054, (flow_pressure_208044 / 1.0000000000000000e+03), composition_208046, -1.0000000000000000e+00), NTI206559);
-		var properties_208067 = nimCopy(null, properties_detail_206683(f_t_208054, density_208066.Field0, composition_208046), NTI206646);
-		var orifice_diameter_208068 = thermal_expansion_207084(orifice_a_208061, orifice_id_208059, 2.9314999999999998e+02, f_t_208054);
-		var meter_diameter_208069 = thermal_expansion_207084(pipe_a_208060, pipe_id_208057, 2.9314999999999998e+02, f_t_208054);
-		var beta_208070 = diameter_ratio_207105(orifice_diameter_208068, meter_diameter_208069);
-		var velocity_factor_208071 = velocity_factor_207123(beta_208070);
-		var discharge_coefs_208072 = nimCopy(null, discharge_constants_207192(meter_diameter_208069, beta_208070), NTI207142);
-		var kappa_208073 = 0.0;
-		var si_base_density_208074 = mol_lto_kgm3_208023(base_properties_208064.Field0, base_density_208063.Field0);
-		var si_density_208075 = mol_lto_kgm3_208023(properties_208067.Field0, density_208066.Field0);
-		if ((0.0 < properties_208067.Field12)) {
-		kappa_208073 = properties_208067.Field12;
+		var f_t_208056 = (flow_temp_208043 + 2.7314999999999998e+02);
+		var b_t_208057 = (base_temp_208051 + 2.7314999999999998e+02);
+		var pipe_id_208059 = (pipe_internal_diameter_208047 / 1.0000000000000000e+03);
+		var orifice_id_208061 = (orifice_internal_diameter_208048 / 1.0000000000000000e+03);
+		var pipe_a_208062 = (alpha_pipe_208049 * Math.pow(1.0000000000000000e+01, -6.0000000000000000e+00));
+		var orifice_a_208063 = (alpha_orifice_208050 * Math.pow(1.0000000000000000e+01, -6.0000000000000000e+00));
+		var base_density_208065 = nimCopy(null, density_detail_206567(b_t_208057, (base_pressure_208052 / 1.0000000000000000e+03), composition_208046, -1.0000000000000000e+00), NTI206559);
+		var base_properties_208066 = nimCopy(null, properties_detail_206683(b_t_208057, base_density_208065.Field0, composition_208046), NTI206646);
+		var density_208068 = nimCopy(null, density_detail_206567(f_t_208056, (flow_pressure_208044 / 1.0000000000000000e+03), composition_208046, -1.0000000000000000e+00), NTI206559);
+		var properties_208069 = nimCopy(null, properties_detail_206683(f_t_208056, density_208068.Field0, composition_208046), NTI206646);
+		var orifice_diameter_208070 = thermal_expansion_207084(orifice_a_208063, orifice_id_208061, 2.9314999999999998e+02, f_t_208056);
+		var meter_diameter_208071 = thermal_expansion_207084(pipe_a_208062, pipe_id_208059, 2.9314999999999998e+02, f_t_208056);
+		var beta_208072 = diameter_ratio_207105(orifice_diameter_208070, meter_diameter_208071);
+		var velocity_factor_208073 = velocity_factor_207123(beta_208072);
+		var discharge_coefs_208074 = nimCopy(null, discharge_constants_207192(meter_diameter_208071, beta_208072), NTI207142);
+		var kappa_208075 = 0.0;
+		var si_base_density_208076 = mol_lto_kgm3_208023(base_properties_208066.Field0, base_density_208065.Field0);
+		var si_density_208077 = mol_lto_kgm3_208023(properties_208069.Field0, density_208068.Field0);
+		if ((0.0 < properties_208069.Field12)) {
+		kappa_208075 = properties_208069.Field12;
 		}
 		else {
-			kappa_208073 = 1.0000000000000000e+00;
+			kappa_208075 = 1.0000000000000000e+00;
 		}
 		
-		var expansion_factor_208078 = expansion_factor_207243(beta_208070, differential_pressure_208045, flow_pressure_208044, kappa_208073);
-		var iteration_flow_factor_208080 = iteration_flow_factor_207268(orifice_diameter_208068, meter_diameter_208069, differential_pressure_208045, velocity_factor_208071, 1.0267999999999999e-05, si_density_208075, expansion_factor_208078);
-		var discharge_coefficient_208081 = nimCopy(null, discharge_coefficient_207324(discharge_coefs_208072, iteration_flow_factor_208080), NTI207302);
-		var colontmp__208141 = mass_flow_207373(discharge_coefficient_208081.Field0, orifice_diameter_208068, differential_pressure_208045, velocity_factor_208071, si_density_208075, expansion_factor_208078);
-		var colontmp__208142 = actual_flow_207405(discharge_coefficient_208081.Field0, orifice_diameter_208068, differential_pressure_208045, velocity_factor_208071, si_density_208075, expansion_factor_208078);
-		var colontmp__208143 = base_flow_207427(discharge_coefficient_208081.Field0, orifice_diameter_208068, differential_pressure_208045, velocity_factor_208071, si_base_density_208074, si_density_208075, expansion_factor_208078);
-		nimCopy(result_208053, {Field0: colontmp__208141, Field1: colontmp__208142, Field2: colontmp__208143}, NTI208015);
+		var expansion_factor_208080 = expansion_factor_207243(beta_208072, differential_pressure_208045, flow_pressure_208044, kappa_208075);
+		var iteration_flow_factor_208082 = iteration_flow_factor_207268(orifice_diameter_208070, meter_diameter_208071, differential_pressure_208045, velocity_factor_208073, 1.0267999999999999e-05, si_density_208077, expansion_factor_208080);
+		var discharge_coefficient_208083 = nimCopy(null, discharge_coefficient_207324(discharge_coefs_208074, iteration_flow_factor_208082), NTI207302);
+		var colontmp__208146 = mass_flow_207373(discharge_coefficient_208083.Field0, orifice_diameter_208070, differential_pressure_208045, velocity_factor_208073, si_density_208077, expansion_factor_208080);
+		var colontmp__208147 = actual_flow_207397(discharge_coefficient_208083.Field0, orifice_diameter_208070, differential_pressure_208045, velocity_factor_208073, si_density_208077, expansion_factor_208080);
+		var colontmp__208148 = base_flow_207419(discharge_coefficient_208083.Field0, orifice_diameter_208070, differential_pressure_208045, velocity_factor_208073, si_base_density_208076, si_density_208077, expansion_factor_208080);
+		nimCopy(result_208054, {Field0: colontmp__208146, Field1: colontmp__208147, Field2: colontmp__208148}, NTI208015);
+	} while (false);
 
-	return result_208053;
+	return result_208054;
 
 }
 module.exports = orificeCalculator
