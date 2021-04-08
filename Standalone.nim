@@ -12,6 +12,7 @@ var
   flowTemp : Temperature # deg C
   flowPressure : Pressure # Pa
   differentialPressure : Pressure # Pa
+  raw : bool = false
 
 while true:
   p.next()
@@ -23,6 +24,7 @@ while true:
     of "fT", "flowTemp", "flowTemperature": flowTemp = parseFloat(p.val)
     of "fP", "flowPressure": flowPressure = parseFloat(p.val)
     of "dP", "differentialPressure": differentialPressure = parseFloat(p.val)
+    of "r": raw = true
   of cmdArgument:
     inputJson = p.key
 
@@ -58,4 +60,7 @@ var flows = orificeCalculator(
   basePressure
 )
 
-echo flows.Base * 3051.187, " MCF/day"
+if raw:
+  echo flows.Base
+else:
+  echo flows.Base * 3051.187, " MCF/day"
