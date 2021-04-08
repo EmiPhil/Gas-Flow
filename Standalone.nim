@@ -29,6 +29,10 @@ while true:
 if inputJson == "":
   inputJson = "input.json"
 
+var jsonData : string = inputJson
+if strutils.endsWith(inputJson, ".json"):
+  jsonData = readFile(inputJson)
+
 var
   (
     composition,
@@ -38,7 +42,7 @@ var
     alphaOrifice,
     baseTemp,
     basePressure
-  ) = parseInput(readFile(inputJson))
+  ) = parseInput(jsonData)
 
 var flows = orificeCalculator(
   flowTemp,
