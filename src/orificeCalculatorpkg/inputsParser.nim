@@ -14,6 +14,7 @@ type
     OrificePlateExpansionCoef : Coef
     BaseTemp : Temperature
     BasePressure : Pressure
+    DiffLo : Pressure
 
 proc parseGasflowJson*(jsonNode: JsonNode): InputData =
   let comp = jsonNode["composition"]
@@ -56,6 +57,8 @@ proc parseGasflowJson*(jsonNode: JsonNode): InputData =
 
   result[5] = jsonNode["baseTemp"].getFloat()
   result[6] = jsonNode["basePressure"].getFloat()
+
+  result[7] = jsonNode{"diffLo"}.getFloat(300.0)
 
 proc parseInput*(jsonStr: string): InputData =
   result = parseGasflowJson(parseJson(jsonStr))

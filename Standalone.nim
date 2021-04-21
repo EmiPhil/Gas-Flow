@@ -43,7 +43,8 @@ var
     alphaPipe,
     alphaOrifice,
     baseTemp,
-    basePressure
+    basePressure,
+    diffLo
   ) = parseInput(jsonData)
 
 var flows = orificeCalculator(
@@ -57,7 +58,8 @@ var flows = orificeCalculator(
   alphaPipe,
   alphaOrifice,
   baseTemp,
-  basePressure
+  basePressure,
+  diffLo
 )
 
 if raw:
